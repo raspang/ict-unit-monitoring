@@ -1,0 +1,457 @@
+/* Global Styles */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 62.5%;
+	scroll-behavior: smooth;
+}
+
+@font-face {
+	font-family: "Ruhl";
+	src: url("./fonts/FrankRuhlLibre-Regular.ttf");
+}
+
+@font-face {
+	font-family: "Ruhl Medium";
+	src: url("./fonts/FrankRuhlLibre-Medium.ttf");
+}
+
+body {
+	font-family: "Ruhl", sans-serif;
+}
+
+h1 {
+	font-size: 2.6rem;
+}
+
+li, button, label, input, p {
+	font-size: 1.5rem;
+}
+
+h2 {
+	font-size: 4.8rem;
+}
+
+h3 {
+	font-size: 3rem;
+	font-weight: normal;
+}
+
+h4, h5 {
+	font-size: 2.8rem;
+}
+
+a {
+	color: black;
+	text-decoration: none;
+}
+
+.main-head {
+	background: #131c27;
+	color: white;
+	position: sticky;
+	top: 0px;
+	z-index: 3;
+}
+
+#logo {
+	flex: 2 1 40rem;
+	font-family: "Pattaya", sans-serif;
+	font-weight: 400;
+}
+
+nav {
+	display: flex;
+	width: 90%;
+	margin: auto;
+	padding: 2rem;
+	min-height: 10vh;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+nav ul {
+	display: flex;
+	flex: 1 1 40rem;
+	justify-content: space-around;
+	align-items: center;
+	list-style: none;
+}
+
+.hero {
+	min-height: 89vh;
+	background: linear-gradient(rgba(0, 0, 0, 0.5), transparent),
+		url("./images/digital-wallpaper.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	color: black;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+.hero h3 {
+	padding: 5rem;
+	color: rgb(48, 46, 46);
+}
+
+.hero-intro {
+	padding-top: 1rem;
+}
+
+.hero-intro img {
+	height: 15vh;
+}
+
+.hero-details {
+	min-height: 50vh;
+	padding: 2rem;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.hero-details-img {
+	padding: 1rem;
+	min-height: 40vh;
+}
+
+.hero-details-img img {
+	height: 40vh;
+}
+
+.hero-details-service {
+	min-height: 40vh;
+}
+
+.hero-details-service ul {
+	display: flex;
+	flex-direction: column;
+	flex: 1 1 40rem;
+	justify-content: space-around;
+	align-items: flex-start;
+	list-style: none;
+}
+
+.footer-wrapper {
+	display: flex;
+	padding: 2rem;
+	width: 90%;
+	margin: auto;
+	align-items: center;
+	min-height: 10vh;
+	flex-wrap: wrap;
+}
+
+footer h5 {
+	flex: 1 1 40rem;
+}
+
+@media screen and (max-width: 932px) {
+	html {
+		font-size: 45%;
+	}
+	nav {
+		text-align: center;
+	}
+	#logo {
+		padding: 2rem;
+	}
+}
+
+/* Login */
+#login {
+	min-height: 100vh;
+	background: linear-gradient(rgba(0, 0, 0, 0.5), transparent),
+		url("./images/digital-wallpaper.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.form-login-wrapper {
+	background: rgba(19, 28, 39, 0.8);
+	width: 60%;
+	color: white;
+	border-radius: 20px;
+}
+
+.form-login-head {
+	text-align: center;
+	padding: 4rem;
+}
+
+.name-login-form, .password-login-form, .remember-login-form {
+	padding: 1.5rem;
+	text-align: center;
+}
+
+.form-login-wrapper label {
+	margin: 0rem 3rem;
+}
+
+.form-login-wrapper button {
+	width: 100%;
+	padding: 2rem;
+	margin-top: 8rem;
+	border-bottom-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+	cursor: pointer;
+}
+
+.form-login-wrapper input {
+	padding: 1rem 3rem;
+}
+
+.has-error {
+	color: red;
+}
+/* Admin Module */
+.main-section {
+	min-height: 89vh;
+	background: linear-gradient(rgba(0, 0, 0, 0.5), transparent),
+		url("./images/digital-wallpaper.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+}
+
+.admin {
+	color: black;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	text-align: center;
+	flex-wrap: wrap;
+	max-width: 100%;
+	margin: auto;
+}
+
+.admin-side {
+	min-height: 8vh;
+	width: 90%;
+	background: rgb(0, 0, 0, 0.7);
+	border-radius: 1rem 1rem;
+	margin: 0 0 auto 0;
+}
+
+.admin-side ul {
+	display: flex;
+	list-style: none;
+	align-content: center;
+	align-items: center;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	height: 100%;
+	padding: 2rem 0 0 0;
+}
+
+.admin-side ul li {
+	margin: 0rem 1rem;
+	font-size: 1.8rem;
+}
+
+.admin-side ul a {
+	color: white;
+}
+
+.admin-side-current {
+	background: rgba(108, 109, 114, 0.99);
+	padding: 1.6rem;
+	border-radius: 1rem 1rem 0 0;
+	bottom: 0%;
+}
+
+.admin-main {
+	min-height: 90vh;
+	width: 90%;
+	background: rgb(0, 0, 0, 0.1);
+	border-radius: 1rem 1rem;
+	position: relative;
+}
+
+.admin-main table {
+	background: white;
+	border-radius: 1rem 1rem;
+	min-width: 98%;
+	height: 98%;
+	margin: auto;
+	margin-top: 2rem;
+}
+
+.admin-main table td {
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	font-size: 1.5rem;
+}
+
+.admin-main table thead {
+	font-size: 1.5rem;
+	background: #343437;
+	color: white;
+	font-family: sans-serif;
+}
+
+.admin-main table thead .sorting {
+	margin: 1.5rem;
+	padding: 1rem;
+}
+
+.admin-main-header {
+  color: white;
+  display: block;
+  text-align: left;
+  padding: 2rem 0 0 2rem;
+  margin: 1rem;
+}
+.admin-main-header h1 {
+  padding: 0 0 1rem 0;
+}
+
+.paginate_button {
+	margin: 1rem;
+}
+
+.dataTables_length {
+	display : none;
+	/*margin-top: 1rem;
+	margin-bottom: 2rem; */
+	
+}
+
+
+
+div.dataTables_wrapper, div.dataTables_filter {
+	text-align: center;
+	display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+div.dataTables_wrapper div.dataTables_filter input {
+	height: 4rem;
+	font-size: 2rem;
+	margin: 2rem 0rem;
+}
+
+.dataTables_info {
+	color: white;
+	font-size: 1.5rem;
+}
+
+.paginate_button {
+	background: rgb(0, 0, 0, 0.7);
+	font-size: 1.5rem;
+}
+
+.dataTables_paginate a {
+	color: white;
+}
+
+div.dataTables_wrapper div.dataTables_paginate {
+	height: 4rem;
+	justify-content: center;
+}
+
+.dataTable {
+	width: 100%;
+}
+/* Admin Form */
+.form-admin-wrapper {
+	background: rgba(19, 28, 39, 0.8);
+	color: white;
+	border-radius: 20px;
+	font-size: 1.5rem;
+	max-width: 90%;
+	margin: 1rem auto;
+}
+
+.form-admin-head {
+	text-align: center;
+	padding: 4rem;
+}
+
+.admin-form {
+	padding: 1rem;
+	text-align: center;
+	display: flex;
+}
+
+.form-admin-wrapper .form-admin-input {
+	flex: 1 1 10rem;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	align-items: center;
+}
+
+.form-admin-wrapper label {
+	flex: 1 1 10rem;
+	margin: 0rem 2rem;
+	max-width: 20rem;
+}
+
+.form-admin-wrapper .radio-form {
+	margin: 0rem 2rem;
+}
+
+.form-admin-wrapper button {
+	padding: 2rem;
+	margin: 4rem 1rem;
+	border-radius: 20px;
+	border-color: #ffffff;
+	background-color: #525f09;
+	color: white;
+	cursor: pointer;
+}
+
+.admin-form-button-new {
+	padding: 1.6rem;
+	margin: 1.6rem 2rem;
+	border-radius: 20px;
+	border-color: #ffffff;
+	background-color: #343437;
+	color: white;
+	cursor: pointer;
+	display: block;
+	width: 10rem;
+	position: absolute;
+	right: 1%;
+	top: 1%;
+}
+
+.form-admin-wrapper input, select {
+	padding: 1rem 3rem;
+}
+
+.form-admin-button-cancel {
+	padding: 2rem;
+	margin: 4rem 1rem;
+	border-radius: 20px;
+	border-color: #ffffff;
+	background-color: #1e4045;
+	color: white;
+	cursor: pointer;
+}
+
+@media screen and (max-width: 842px) {
+	/* form admin */
+	.form-admin-wrapper .form-admin-input {
+		grid-template-columns: repeat(1, 1fr);
+	}
+	.admin-side ul li {
+	 	padding: 2rem;
+	}
+	.admin-side-current {
+	border-radius: 1rem;
+	}
+}
