@@ -12,7 +12,7 @@
 	<name>ictunitmonitoring</name>
 
 	<properties>
-		<springframework.version>5.2.6.RELEASE</springframework.version>
+		<springframework.version>4.2.5.RELEASE</springframework.version>
 		<springsecurity.version>4.0.4.RELEASE</springsecurity.version>
 		<hibernate.version>4.3.11.Final</hibernate.version>
 		<mysql.connector.version>5.1.31</mysql.connector.version>
@@ -125,7 +125,7 @@
 <dependency>
     <groupId>com.fasterxml.jackson.core</groupId>
     <artifactId>jackson-databind</artifactId>
-    <version>2.9.10.4</version>
+      <version>2.6.0</version>
 </dependency>
 
 <dependency>
