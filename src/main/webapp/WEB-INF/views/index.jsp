@@ -9,7 +9,7 @@
 	</div>
 	<div class="hero-details">
 		<div class="hero-details-img">
-			<img src="<c:url value='/static/images/laptop.jpg' />" alt="">
+			<img src="<c:url value='/static/images/laptop.png' />" alt="">
 		</div>
 		<div class="hero-details-service">
 			<h3>ICT Unit Monitoring</h3>

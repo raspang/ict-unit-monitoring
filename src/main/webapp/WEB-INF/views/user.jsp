@@ -72,7 +72,7 @@
 						<form:radiobutton class="radio-form" id="gender" path="gender"
 							value="Male" checked="checked" />
 						Male
-						<form:radiobutton id="gender" path="gender" value="Famale" />
+						<form:radiobutton class="radio-form"  id="gender" path="gender" value="Famale" />
 						Famale
 					</div>
 

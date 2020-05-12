@@ -317,10 +317,6 @@ footer h5 {
   padding: 0 0 1rem 0;
 }
 
-.paginate_button {
-	margin: 1rem;
-}
-
 .dataTables_length {
 	display : none;
 	/*margin-top: 1rem;
@@ -350,7 +346,8 @@ div.dataTables_wrapper div.dataTables_filter input {
 }
 
 .paginate_button {
-	background: rgb(0, 0, 0, 0.7);
+
+	margin: 1rem;
 	font-size: 1.5rem;
 }
 
