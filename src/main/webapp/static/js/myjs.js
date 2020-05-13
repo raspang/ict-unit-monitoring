@@ -299,3 +299,64 @@ $(function() {
 	}
 
 });
+
+//code for jquery dataTable
+var $tableUser = $('#preventiveMaintenanceList');
+
+// execute the below code only where we have this table
+if ($tableUser.length) {
+	// console.log('Inside the table!');
+
+	var jsonUrl = '';
+	jsonUrl = window.contextRoot + '/admin/json/data/preventives';
+
+	/* alert(jsonUrl); */
+	$tableUser.DataTable({
+
+		lengthMenu : [ [ 15, 20, 50, -1 ],
+				[ '15 Records', '20 Records', '50 Records', 'ALL' ] ],
+		pageLength : 15,
+		ajax : {
+			url : jsonUrl,
+			dataSrc : ''
+		},
+		columns : [
+				{
+					data : 'unit.serialNo'
+				},
+				{
+					data : 'unit.equipmentName'
+				},
+				{
+					data : 'unit.modelNo'
+				},
+
+				{
+					data : 'preparedBy.fullName'
+				},
+				{
+					data : 'preparedDate'
+				},				
+				{
+					data : 'id',
+					bSortable : false,
+					mRender : function(data, type, row) {
+						var str = '';
+						if (userRole === 'ADMIN') {
+							str += '<a href="' + window.contextRoot
+									+ '/admin/edit-preventivemaintenance-' + data
+									+ '" class="">edit</a>&nbsp;';
+							str += '&nbsp;<a href="' + window.contextRoot
+									+ '/admin/delete-preventivemaintenance-' + data
+									+ '" class="">delete</a>';
+						}
+						return str;
+
+					}
+
+				}
+
+		]
+	});
+}
+

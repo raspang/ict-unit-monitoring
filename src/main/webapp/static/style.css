@@ -384,11 +384,35 @@ div.dataTables_wrapper div.dataTables_paginate {
 	display: flex;
 }
 
+.admin-form-check {
+
+	text-align: right;
+	display: flex;
+	flex-wrap: wrap
+}
+
 .form-admin-wrapper .form-admin-input {
 	flex: 1 1 10rem;
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	align-items: center;
+}
+
+.form-admin-wrapper .form-admin-input-check {
+	flex: 1 1 10rem;
+	display: flex;
+	align-items: center;
+	margin: 1rem;
+	flex-wrap: wrap;
+}
+
+input[type=checkbox] + label {
+  color: #ccc;
+  font-style: italic;
+} 
+input[type=checkbox]:checked + label {
+  color: #008000;
+  font-style: normal;
 }
 
 .form-admin-wrapper label {
@@ -443,7 +467,7 @@ div.dataTables_wrapper div.dataTables_paginate {
 @media screen and (max-width: 842px) {
 	/* form admin */
 	.form-admin-wrapper .form-admin-input {
-		grid-template-columns: repeat(1, 1fr);
+		grid-template-rows: repeat(1, 1fr);
 	}
 	.admin-side ul li {
 	 	padding: 2rem;

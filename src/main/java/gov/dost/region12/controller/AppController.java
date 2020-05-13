@@ -1,6 +1,7 @@
 package gov.dost.region12.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
@@ -28,6 +29,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import gov.dost.region12.model.EquipmentMaintenance;
+import gov.dost.region12.model.Month;
+import gov.dost.region12.model.PreventiveMaintenance;
 import gov.dost.region12.model.Request;
 import gov.dost.region12.model.Unit;
 import gov.dost.region12.model.User;
@@ -35,6 +38,7 @@ import gov.dost.region12.model.UserProfile;
 import gov.dost.region12.model.YearReport;
 import gov.dost.region12.service.CurYearReportService;
 import gov.dost.region12.service.EquipmentMaintenanceService;
+import gov.dost.region12.service.PreventiveMaintenanceService;
 import gov.dost.region12.service.RequestService;
 import gov.dost.region12.service.UnitService;
 import gov.dost.region12.service.UserProfileService;
@@ -59,9 +63,12 @@ public class AppController {
 
 	@Autowired
 	EquipmentMaintenanceService equipmentMaintenanceService;
-	
+
 	@Autowired
-	CurYearReportService curYearReportService;	
+	CurYearReportService curYearReportService;
+
+	@Autowired
+	PreventiveMaintenanceService preventiveMaintenanceService;
 
 	@Autowired
 	MessageSource messageSource;
@@ -97,12 +104,17 @@ public class AppController {
 		return equipmentMaintenanceService.findByUnitId(unitId);
 	}
 
+	@RequestMapping("/admin/json/data/preventives")
+	@ResponseBody
+	public List<PreventiveMaintenance> getPreventiveMaintenances() {
+		return preventiveMaintenanceService.findAllPreventiveMaintenances();
+	}
+
 	/* end Json */
 
 	/* Controller */
 	@RequestMapping(value = { "/" }, method = RequestMethod.GET)
 	public String welcome(ModelMap model) {
-
 		model.addAttribute("loggedinuser", getPrincipal());
 		return "index";
 	}
@@ -142,7 +154,73 @@ public class AppController {
 		return "equipmentMaintenanceUnitList";
 	}
 
+	@RequestMapping(value = { "/admin/preventive" }, method = RequestMethod.GET)
+	public String preventive(ModelMap model) {
+		model.addAttribute("loggedinuser", getPrincipal());
+		return "preventiveMaintenanceList";
+	}
+
 	/* end Controller */
+
+	@RequestMapping(value = { "/admin/newpreventivemaintenance" }, method = RequestMethod.GET)
+	public String newPreventive(ModelMap model) {
+
+		model.addAttribute("months", new String[] { "January", "February", "March", "April", "May", "June", "July",
+				"August", "September", "October", "November", "December" });
+		model.addAttribute("units", unitService.findAllUnits());
+		model.addAttribute("users", userService.findAllUsers());
+		model.addAttribute("preventiveMaintenance", new PreventiveMaintenance());
+		model.addAttribute("edit", false);
+
+		model.addAttribute("loggedinuser", getPrincipal());
+		return "preventiveMaintenance";
+	}
+
+	@RequestMapping(value = { "/admin/newpreventivemaintenance" }, method = RequestMethod.POST)
+	public String savePreventive(@Valid PreventiveMaintenance preventiveMaintenance, BindingResult result,
+			ModelMap model) {
+		if (result.hasErrors()) {
+			return "preventiveMaintenance";
+		}
+		preventiveMaintenanceService.savePreventiveMaintenance(preventiveMaintenance);
+		model.addAttribute("success", "Preventive Maintenance Schedule successfully created.");
+		model.addAttribute("loggedinuser", getPrincipal());
+		return "redirect:/admin/preventive";
+	}
+
+	@RequestMapping(value = { "/admin/edit-preventivemaintenance-{preventiveId}" }, method = RequestMethod.GET)
+	public String editPreventive(@PathVariable Long preventiveId, ModelMap model) {
+		PreventiveMaintenance preventiveMaintenance = preventiveMaintenanceService.findById(preventiveId);
+		model.addAttribute("months", new String[] { "January", "February", "March", "April", "May", "June", "July",
+				"August", "September", "October", "November", "December" });
+		model.addAttribute("units", unitService.findAllUnits());
+		model.addAttribute("users", userService.findAllUsers());
+		model.addAttribute("preventiveMaintenance", preventiveMaintenance);
+		model.addAttribute("checkAll", preventiveMaintenance.getCheckAll());
+		model.addAttribute("edit", true);
+
+		model.addAttribute("loggedinuser", getPrincipal());
+		return "preventiveMaintenance";
+	}
+
+	@RequestMapping(value = { "/admin/edit-preventivemaintenance1-{preventiveId}" }, method = RequestMethod.POST)
+	public String updatePreventive(@Valid PreventiveMaintenance preventiveMaintenance, BindingResult result,
+			ModelMap model, @PathVariable Long preventiveId) {
+		if (result.hasErrors()) {
+			return "preventiveMaintenance";
+		}
+		preventiveMaintenanceService.updatePreventiveMaintenance(preventiveMaintenance);
+		model.addAttribute("success", "Preventive Maintenance Schedule successfully updated.");
+		model.addAttribute("loggedinuser", getPrincipal());
+		return "redirect:/admin/preventive";
+	}
+	
+	
+	@RequestMapping(value = { "/admin/delete-preventivemaintenance-{preventiveId}" }, method = RequestMethod.GET)
+	public String deletePreventive(@PathVariable Long preventiveId) {
+		preventiveMaintenanceService.deletePreventiveMaintenance(preventiveId);
+		return "redirect:/admin/preventive";
+	}
 
 	@RequestMapping(value = { "/admin/newequipmentmaintenance-unit-{unitId}" }, method = RequestMethod.GET)
 	public String newEquipmentMaintenance(ModelMap model, @PathVariable Long unitId) {
@@ -155,7 +233,6 @@ public class AppController {
 
 		usersInit.add(new User());
 		usersInit.addAll(users);
-
 		requestsInit.addAll(requests);
 
 		model.addAttribute("equipmentMaintenance", equipmentMaintenance);
@@ -188,9 +265,10 @@ public class AppController {
 			return "redirect:/admin/view-maintenance-unit-" + unitId;
 		return "redirect:/admin/maintenance";
 	}
+
 	@RequestMapping(value = { "/admin/edit-equipmentmaintenance-{equipmentmaintenanceId}" }, method = RequestMethod.GET)
-	public String editEquipmentMaintenance( @PathVariable Long equipmentmaintenanceId, ModelMap model) {
-		
+	public String editEquipmentMaintenance(@PathVariable Long equipmentmaintenanceId, ModelMap model) {
+
 		EquipmentMaintenance equipmentMaintenance = equipmentMaintenanceService.findById(equipmentmaintenanceId);
 		List<User> users = userService.findAllUsers();
 
@@ -201,11 +279,10 @@ public class AppController {
 		usersInit.addAll(users);
 
 		requestsInit.add(equipmentMaintenance.getRequest());
-		
+
 		Long unitId = 0L;
-		if (equipmentMaintenance.getRequest() != null && equipmentMaintenance.getRequest().getUnit() != null) 
+		if (equipmentMaintenance.getRequest() != null && equipmentMaintenance.getRequest().getUnit() != null)
 			unitId = equipmentMaintenance.getRequest().getUnit().getId();
-		
 
 		model.addAttribute("equipmentMaintenance", equipmentMaintenance);
 		model.addAttribute("requests", requestsInit);
@@ -216,6 +293,7 @@ public class AppController {
 		model.addAttribute("loggedinuser", getPrincipal());
 		return "equipmentMaintenanceUnit";
 	}
+
 	@RequestMapping(value = { "/admin/editequipmentmaintenance-unit" }, method = RequestMethod.POST)
 	public String updateEquipmentMaintenance(@Valid EquipmentMaintenance equipmentMaintenance, BindingResult result,
 			ModelMap model) {
@@ -224,9 +302,9 @@ public class AppController {
 			return "equipmentMaintenanceUnit";
 		}
 		Long unitId = 0L;
-		if (equipmentMaintenance.getRequest() != null && equipmentMaintenance.getRequest().getUnit() != null) 
+		if (equipmentMaintenance.getRequest() != null && equipmentMaintenance.getRequest().getUnit() != null)
 			unitId = equipmentMaintenance.getRequest().getUnit().getId();
-		
+
 		equipmentMaintenanceService.updateEquipmentMaintenance(equipmentMaintenance);
 		model.addAttribute("success", "Equipment Maintenance successfully created.");
 		model.addAttribute("loggedinuser", getPrincipal());
@@ -235,22 +313,21 @@ public class AppController {
 			return "redirect:/admin/view-maintenance-unit-" + unitId;
 		return "redirect:/admin/maintenance";
 	}
+
 	@RequestMapping(value = { "/admin/delete-equipmentmaintenance-{id}" }, method = RequestMethod.GET)
 	public String deleteEquipmentMaintenance(@PathVariable Long id) {
 		Long unitId = 0L;
 		EquipmentMaintenance equipmentMaintenance = equipmentMaintenanceService.findById(id);
-		if (equipmentMaintenance.getRequest() != null && equipmentMaintenance.getRequest().getUnit() != null) 
+		if (equipmentMaintenance.getRequest() != null && equipmentMaintenance.getRequest().getUnit() != null)
 			unitId = equipmentMaintenance.getRequest().getUnit().getId();
-		
+
 		equipmentMaintenanceService.deleteEquipmentMaintenance(id);
-		
+
 		if (unitId != 0L)
 			return "redirect:/admin/view-maintenance-unit-" + unitId;
 		return "redirect:/admin/maintenance";
 	}
-	
-	
-	
+
 	@RequestMapping(value = { "/admin/newunit" }, method = RequestMethod.GET)
 	public String newUnit(ModelMap model) {
 		Unit unit = new Unit();
@@ -314,7 +391,6 @@ public class AppController {
 	@RequestMapping(value = { "/admin/delete-unit-{id}" }, method = RequestMethod.GET)
 	public String deleteUnit(@PathVariable Long id) {
 		unitService.deleteUnit(id);
-		;
 		return "redirect:/admin/unit";
 	}
 
@@ -400,52 +476,48 @@ public class AppController {
 		return "redirect:/admin/request";
 	}
 
-	
 	/* Setting Current Year Report */
 	@RequestMapping(value = { "/admin/board" }, method = RequestMethod.GET)
 	public String newCurYearReport(ModelMap model) {
-		model.addAttribute("yearReports", curYearReportService.findAllYearReports());		
+		model.addAttribute("yearReports", curYearReportService.findAllYearReports());
 		return "board";
 	}
-	
+
 	@RequestMapping(value = { "/admin/newcurrentyearreport" }, method = RequestMethod.GET)
-	public String saveCurYearReport(
-			@RequestParam(name = "year") String year,
-			HttpServletRequest request,
-			ModelMap model
-			) {
-		
-		if( curYearReportService.findByYear(year) != null){
+	public String saveCurYearReport(@RequestParam(name = "year") String year, HttpServletRequest request,
+			ModelMap model) {
+
+		if (curYearReportService.findByYear(year) != null) {
 			YearReport yearReport = curYearReportService.findByYear(year);
 			yearReport.setYear(year);
 			yearReport.setEnable(true);
 			curYearReportService.updateYearReport(yearReport);
-		}else{
-			
+		} else {
+
 			YearReport yearReportEnable = curYearReportService.findByEnable();
-			if(yearReportEnable!= null){
+			if (yearReportEnable != null) {
 				yearReportEnable.setEnable(false);
 				curYearReportService.updateYearReport(yearReportEnable);
 			}
-				
-			YearReport yearReport = new YearReport();			
+
+			YearReport yearReport = new YearReport();
 			yearReport.setYear(year);
-			yearReport.setEnable(true);;
+			yearReport.setEnable(true);
+			;
 			curYearReportService.saveYearReport(yearReport);
 		}
-			
-			
+
 		return "redirect:/admin/board";
 	}
-	
+
 	/**
 	 * This method will list all existing users.
 	 */
 	/*
-	 * @RequestMapping(value = { "/list"}, method = RequestMethod.GET) public
-	 * String listUsers(ModelMap model) { List<User> users =
-	 * userService.findAllUsers(); model.addAttribute("users", users);
-	 * model.addAttribute("loggedinuser", getPrincipal()); return "userslist"; }
+	 * @RequestMapping(value = { "/list"}, method = RequestMethod.GET) public String
+	 * listUsers(ModelMap model) { List<User> users = userService.findAllUsers();
+	 * model.addAttribute("users", users); model.addAttribute("loggedinuser",
+	 * getPrincipal()); return "userslist"; }
 	 */
 
 	/**
@@ -472,13 +544,13 @@ public class AppController {
 		}
 
 		/*
-		 * Preferred way to achieve uniqueness of field [sso] should be
-		 * implementing custom @Unique annotation and applying it on field [sso]
-		 * of Model class [User].
+		 * Preferred way to achieve uniqueness of field [sso] should be implementing
+		 * custom @Unique annotation and applying it on field [sso] of Model class
+		 * [User].
 		 * 
-		 * Below mentioned peace of code [if block] is to demonstrate that you
-		 * can fill custom errors outside the validation framework as well while
-		 * still using internationalized messages.
+		 * Below mentioned peace of code [if block] is to demonstrate that you can fill
+		 * custom errors outside the validation framework as well while still using
+		 * internationalized messages.
 		 * 
 		 */
 		if (!userService.isUserSSOUnique(user.getId(), user.getSsoId())) {
@@ -520,16 +592,6 @@ public class AppController {
 			return "user";
 		}
 
-		/*
-		 * //Uncomment below 'if block' if you WANT TO ALLOW UPDATING SSO_ID in
-		 * UI which is a unique key to a User.
-		 * if(!userService.isUserSSOUnique(user.getId(), user.getSsoId())){
-		 * FieldError ssoError =new
-		 * FieldError("user","ssoId",messageSource.getMessage(
-		 * "non.unique.ssoId", new String[]{user.getSsoId()},
-		 * Locale.getDefault())); result.addError(ssoError); return
-		 * "registration"; }
-		 */
 
 		userService.updateUser(user);
 
@@ -554,8 +616,6 @@ public class AppController {
 		return curYearReportService.findByEnable();
 	}
 
-	
-	
 	/**
 	 * This method will provide UserProfile list to views
 	 */
@@ -618,8 +678,8 @@ public class AppController {
 	}
 
 	/**
-	 * This method returns true if users is already authenticated [logged-in],
-	 * else false.
+	 * This method returns true if users is already authenticated [logged-in], else
+	 * false.
 	 */
 	private boolean isCurrentAuthenticationAnonymous() {
 		final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
