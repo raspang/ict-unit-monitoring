@@ -8,6 +8,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import gov.dost.region12.dao.CurYearReportDao;
 import gov.dost.region12.dao.EquipmentMaintenanceDao;
 import gov.dost.region12.dao.RequestDao;
 import gov.dost.region12.dao.UserDao;
@@ -23,6 +24,9 @@ public class RequestServiceImpl implements RequestService{
 
 	@Autowired
 	private RequestDao dao;
+	
+	@Autowired
+	private CurYearReportDao curYearReportDao; 
 
 	@Autowired
 	private EquipmentMaintenanceDao equipmentMaintenanceDao;
@@ -32,6 +36,7 @@ public class RequestServiceImpl implements RequestService{
 	}
 
 	public void saveRequest(Request request) {
+		request.setYearReport(curYearReportDao.findByEnable().getId());
 		dao.save(request);
 	}
 
@@ -67,7 +72,7 @@ public class RequestServiceImpl implements RequestService{
 	@Override
 	public List<Request> findAllRequests() {
 		// TODO Auto-generated method stub
-		return dao.findAll();
+		return dao.findAll(curYearReportDao.findByEnable().getId());
 	}
 
 	@Override
@@ -76,12 +81,12 @@ public class RequestServiceImpl implements RequestService{
 		List<Request> reqs = new ArrayList<>();
 		
 		// Get requests for this unit
-		for(EquipmentMaintenance eM : equipmentMaintenanceDao.findAll()) 
+		for(EquipmentMaintenance eM : equipmentMaintenanceDao.findAll(curYearReportDao.findByEnable().getId())) 
 			if(eM.getRequest() != null)
 				idRequests.add(eM.getRequest().getId());
 		
 		// filter all request for this unit
-		for(Request r : dao.findByUnit(unit)){
+		for(Request r : dao.findByUnit(unit, curYearReportDao.findByEnable().getId())){
 			boolean isIn = false;
 			for(Long id : idRequests)
 				if(r.getId().equals(id))

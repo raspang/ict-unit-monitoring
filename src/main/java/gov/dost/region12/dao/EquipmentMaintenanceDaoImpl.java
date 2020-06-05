@@ -33,17 +33,19 @@ public class EquipmentMaintenanceDaoImpl extends AbstractDao<Long, EquipmentMain
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<EquipmentMaintenance> findAll() {
+	public List<EquipmentMaintenance> findAll(Long yearReportId) {
 		Criteria crit = createEntityCriteria();
+		crit.add(Restrictions.eq("yearReport", yearReportId));
 		crit.addOrder(Order.asc("id"));
 		return (List<EquipmentMaintenance>)crit.list();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<EquipmentMaintenance> findByUnit(Unit unit) {
+	public List<EquipmentMaintenance> findByUnit(Unit unit, Long yearReportId) {
 		Criteria crit = createEntityCriteria();
 		crit.createAlias("request", "request");
+		crit.add(Restrictions.eq("yearReport", yearReportId));
 		crit.add(Restrictions.eq("request.unit", unit));
 		crit.addOrder(Order.asc("id"));
 		return (List<EquipmentMaintenance>)crit.list();

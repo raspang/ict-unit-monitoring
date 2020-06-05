@@ -12,5 +12,7 @@ public interface PreventiveMaintenanceDao {
 	
 	void delete(Long id);
 	
-	List<PreventiveMaintenance> findAll();
+	List<PreventiveMaintenance> findAll(Long yearReportId);
+	
+	List<PreventiveMaintenance> findByCompleted(Long yearReportId);
 }

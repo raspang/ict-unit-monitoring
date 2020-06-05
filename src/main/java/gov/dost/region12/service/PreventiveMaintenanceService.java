@@ -16,5 +16,8 @@ public interface PreventiveMaintenanceService {
 	void deletePreventiveMaintenance(Long id);
 
 	List<PreventiveMaintenance> findAllPreventiveMaintenances(); 
+	
+	List<PreventiveMaintenance> findByCompleted(); 
+	
 
 }

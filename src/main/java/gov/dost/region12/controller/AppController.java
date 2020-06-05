@@ -1,7 +1,6 @@
 package gov.dost.region12.controller;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
@@ -29,7 +28,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import gov.dost.region12.model.EquipmentMaintenance;
-import gov.dost.region12.model.Month;
 import gov.dost.region12.model.PreventiveMaintenance;
 import gov.dost.region12.model.Request;
 import gov.dost.region12.model.Unit;
@@ -109,14 +107,18 @@ public class AppController {
 	public List<PreventiveMaintenance> getPreventiveMaintenances() {
 		return preventiveMaintenanceService.findAllPreventiveMaintenances();
 	}
-
 	/* end Json */
 
+	
 	/* Controller */
 	@RequestMapping(value = { "/" }, method = RequestMethod.GET)
 	public String welcome(ModelMap model) {
 		model.addAttribute("loggedinuser", getPrincipal());
-		return "index";
+		if (isCurrentAuthenticationAnonymous())
+			return "index";
+		else
+			return "redirect:/admin/request";
+
 	}
 
 	@RequestMapping(value = { "/admin/user" }, method = RequestMethod.GET)
@@ -126,7 +128,7 @@ public class AppController {
 		return "userList";
 	}
 
-	@RequestMapping(value = { "/admin/", "/admin/request" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/admin/request" }, method = RequestMethod.GET)
 	public String request(ModelMap model) {
 
 		model.addAttribute("loggedinuser", getPrincipal());
@@ -214,8 +216,7 @@ public class AppController {
 		model.addAttribute("loggedinuser", getPrincipal());
 		return "redirect:/admin/preventive";
 	}
-	
-	
+
 	@RequestMapping(value = { "/admin/delete-preventivemaintenance-{preventiveId}" }, method = RequestMethod.GET)
 	public String deletePreventive(@PathVariable Long preventiveId) {
 		preventiveMaintenanceService.deletePreventiveMaintenance(preventiveId);
@@ -477,10 +478,10 @@ public class AppController {
 	}
 
 	/* Setting Current Year Report */
-	@RequestMapping(value = { "/admin/board" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/admin/yearreport" }, method = RequestMethod.GET)
 	public String newCurYearReport(ModelMap model) {
 		model.addAttribute("yearReports", curYearReportService.findAllYearReports());
-		return "board";
+		return "yearreport";
 	}
 
 	@RequestMapping(value = { "/admin/newcurrentyearreport" }, method = RequestMethod.GET)
@@ -507,8 +508,18 @@ public class AppController {
 			curYearReportService.saveYearReport(yearReport);
 		}
 
-		return "redirect:/admin/board";
+		return "redirect:/admin/yearreport";
 	}
+	
+	@RequestMapping(value = { "/admin/objective" }, method = RequestMethod.GET)
+	public String objective(ModelMap model) {
+		
+		model.addAttribute("noUnits", unitService.findAllUnits().size());
+		model.addAttribute("noPreventiveManagementPerformed", preventiveMaintenanceService.findByCompleted().size());
+		
+		return "objective";
+	}
+	
 
 	/**
 	 * This method will list all existing users.
@@ -592,7 +603,6 @@ public class AppController {
 			return "user";
 		}
 
-
 		userService.updateUser(user);
 
 		model.addAttribute("loggedinuser", getPrincipal());
@@ -611,6 +621,13 @@ public class AppController {
 	/**
 	 * This method will provide current year report
 	 */
+	
+	
+	@ModelAttribute("loggedinuser")
+	public String getLogggedInUser() {
+		return getPrincipal();
+	}
+	
 	@ModelAttribute("currentYearReport")
 	public YearReport currentYearReport() {
 		return curYearReportService.findByEnable();
@@ -642,7 +659,7 @@ public class AppController {
 		if (isCurrentAuthenticationAnonymous()) {
 			return "login";
 		} else {
-			return "redirect:/admin/user";
+			return "redirect:/admin/request";
 		}
 	}
 

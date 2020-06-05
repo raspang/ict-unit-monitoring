@@ -7,6 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import gov.dost.region12.dao.CurYearReportDao;
 import gov.dost.region12.dao.EquipmentMaintenanceDao;
 import gov.dost.region12.dao.RequestDao;
 import gov.dost.region12.dao.UnitDao;
@@ -27,11 +28,15 @@ public class EquipmentMaintenanceServiceImpl implements EquipmentMaintenanceServ
 	@Autowired
 	private UnitDao unitDao;
 	
+	@Autowired
+	private CurYearReportDao curYearReportDao; 
+	
 	public EquipmentMaintenance findById(Long id) {
 		return dao.findById(id);
 	}
 
 	public void saveEquipmentMaintenance(EquipmentMaintenance equipmentMaintenance) {
+		equipmentMaintenance.setYearReport(curYearReportDao.findByEnable().getId());
 		dao.save(equipmentMaintenance);
 	}
 
@@ -59,18 +64,18 @@ public class EquipmentMaintenanceServiceImpl implements EquipmentMaintenanceServ
 	@Override
 	public List<EquipmentMaintenance> findAll() {
 		// TODO Auto-generated method stub
-		return dao.findAll();
+		return dao.findAll(curYearReportDao.findByEnable().getId());
 	}
 
 	@Override
 	public List<EquipmentMaintenance> findByUnit(Unit unit) {
-		return dao.findByUnit(unit);
+		return dao.findByUnit(unit, curYearReportDao.findByEnable().getId());
 	}
 
 	@Override
 	public List<EquipmentMaintenance> findByUnitId(Long unitId) {
 		Unit unit = unitDao.findById(unitId);
-		return dao.findByUnit(unit);
+		return dao.findByUnit(unit, curYearReportDao.findByEnable().getId());
 	}
 
 

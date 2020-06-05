@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -52,6 +53,9 @@ public class Unit implements Serializable{
 	@JsonFormat(pattern="MMM dd yyyy")
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date dateRecieved;
+	
+	@Transient
+	private String displayUnit;
 	
 	
 	public Unit() {
@@ -119,6 +123,11 @@ public class Unit implements Serializable{
 		this.dateAcquired = dateAcquired;
 	}
 
+	public String getDisplayUnit() {
+		String unit = equipmentName.concat(" (").concat(modelNo).concat(")").concat("\n").concat(serialNo);
+		return unit;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

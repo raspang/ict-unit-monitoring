@@ -39,10 +39,26 @@
 <body>
 	<header class="main-header">
 		<nav>
-			<h1 id="logo">Unit Monitoring</h1>
-			<ul>
-				<li><a href="${contextRoot}/admin/">LOGIN</a></li>
-			</ul>
+
+
+			<sec:authorize access="isAnonymous()">
+				<h1 id="logo">Unit Monitoring</h1>
+				<ul>
+					<li><a href="${contextRoot}/login">Login</a></li>
+				</ul>
+			</sec:authorize>
+
+			<sec:authorize access="isAuthenticated()">
+				<h1 id="logo">Unit Monitoring</h1>
+				<ul>
+					<li><small><code>Hi! ${loggedinuser}, year
+								setting:${currentYearReport.year} </code></small>
+					<a href="${contextRoot}/logout" style="color: blue">Logout</a></li>
+
+				</ul>
+				
+			</sec:authorize>
+
 
 		</nav>
 	</header>

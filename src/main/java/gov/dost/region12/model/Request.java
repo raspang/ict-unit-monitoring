@@ -73,6 +73,8 @@ public class Request implements Serializable{
 	
 	private Boolean isApproved;
 
+	@JsonIgnore
+	private Long yearReport;
 
 	public Request() {
 		super();
@@ -181,6 +183,15 @@ public class Request implements Serializable{
 
 	public void setIsApproved(Boolean isApproved) {
 		this.isApproved = isApproved;
+	}
+
+	
+	public Long getYearReport() {
+		return yearReport;
+	}
+
+	public void setYearReport(Long yearReport) {
+		this.yearReport = yearReport;
 	}
 
 	@Override

@@ -3,7 +3,9 @@ package gov.dost.region12.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
@@ -18,6 +20,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -55,59 +59,101 @@ public class PreventiveMaintenance implements Serializable {
 	@JoinColumn(name="approved_by_fk")
 	private User approvedBy;
 	
+	private boolean isCompleted;
+	
 	@JsonIgnore
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date approvedDate;
 	
-	@JsonIgnore
-	@ElementCollection(fetch = FetchType.EAGER)
+	@ElementCollection(fetch=FetchType.EAGER)
 	@CollectionTable(name="checkAll", joinColumns=@JoinColumn(name="preventiveMaintenance_id"))
 	@Column(name="checkAll")
-	private List<String> checkAll = new ArrayList<String>();
+	private Set<String> checkAll = new HashSet<>();
 
-/*	@JsonIgnore
-	private List<String> check1 = new ArrayList<String>();
+	@ElementCollection(fetch=FetchType.EAGER)
+	@CollectionTable(name="check1", joinColumns=@JoinColumn(name="preventiveMaintenance_id"))
+	@Column(name="check1")
+	private Set<String> check1 = new HashSet<String>();
 
-	@JsonIgnore
-	private List<String> check2 = new ArrayList<String>();
+	@ElementCollection(fetch=FetchType.EAGER)
+	@CollectionTable(name="check2", joinColumns=@JoinColumn(name="preventiveMaintenance_id"))
+	@Column(name="check2")
+	private Set<String> check2 = new HashSet<String>();
 
-	@JsonIgnore
-	private List<String> check3 = new ArrayList<String>();
-
-	@JsonIgnore
-	private List<String> check4 = new ArrayList<String>();
-
-	@JsonIgnore
-	private List<String> check5 = new ArrayList<String>();
-
-	@JsonIgnore
-	private List<String> check6 = new ArrayList<String>();
+	@ElementCollection(fetch=FetchType.EAGER)
+	@CollectionTable(name="check3", joinColumns=@JoinColumn(name="preventiveMaintenance_id"))
+	@Column(name="check3")
+	private Set<String> check3 = new HashSet<String>();
 
 	@JsonIgnore
-	private List<String> check7 = new ArrayList<String>();
+	@ElementCollection(fetch=FetchType.EAGER)
+	@CollectionTable(name="check4", joinColumns=@JoinColumn(name="preventiveMaintenance_id"))
+	@Column(name="check4")
+	private Set<String> check4 = new HashSet<String>();
 
 	@JsonIgnore
-	private List<String> check8 = new ArrayList<String>();
+	@ElementCollection(fetch=FetchType.EAGER)
+	@CollectionTable(name="check5", joinColumns=@JoinColumn(name="preventiveMaintenance_id"))
+	@Column(name="check5")
+	private Set<String> check5 = new HashSet<String>();
 
 	@JsonIgnore
-	private List<String> check9 = new ArrayList<String>();
+	@ElementCollection(fetch=FetchType.EAGER)
+	@CollectionTable(name="check6", joinColumns=@JoinColumn(name="preventiveMaintenance_id"))
+	@Column(name="check6")
+	private Set<String> check6 = new HashSet<String>();
 
 	@JsonIgnore
-	private List<String> check10 = new ArrayList<String>();
+	@ElementCollection(fetch=FetchType.EAGER)
+	@CollectionTable(name="check7", joinColumns=@JoinColumn(name="preventiveMaintenance_id"))
+	@Column(name="check7")
+	private Set<String> check7 = new HashSet<String>();
 
 	@JsonIgnore
-	private List<String> check11 = new ArrayList<String>();
+	@ElementCollection(fetch=FetchType.EAGER)
+	@CollectionTable(name="check8", joinColumns=@JoinColumn(name="preventiveMaintenance_id"))
+	@Column(name="check8")
+	private Set<String> check8 = new HashSet<String>();
 
 	@JsonIgnore
-	private List<String> check12 = new ArrayList<String>();
+	@ElementCollection(fetch=FetchType.EAGER)
+	@CollectionTable(name="check9", joinColumns=@JoinColumn(name="preventiveMaintenance_id"))
+	@Column(name="check9")
+	private Set<String> check9 = new HashSet<String>();
 
 	@JsonIgnore
-	private List<String> check13 = new ArrayList<String>();
+	@ElementCollection(fetch=FetchType.EAGER)
+	@CollectionTable(name="check10", joinColumns=@JoinColumn(name="preventiveMaintenance_id"))
+	@Column(name="check10")
+	private Set<String> check10 = new HashSet<String>();
 
 	@JsonIgnore
-	private List<String> check14 = new ArrayList<String>();
-*/
+	@ElementCollection(fetch=FetchType.EAGER)
+	@CollectionTable(name="check11", joinColumns=@JoinColumn(name="preventiveMaintenance_id"))
+	@Column(name="check11")
+	private Set<String> check11 = new HashSet<String>();
 
+	@JsonIgnore
+	@ElementCollection(fetch=FetchType.EAGER)
+	@CollectionTable(name="check12", joinColumns=@JoinColumn(name="preventiveMaintenance_id"))
+	@Column(name="check12")
+	private Set<String> check12 = new HashSet<String>();
+
+	@JsonIgnore
+	@ElementCollection(fetch=FetchType.EAGER)
+	@CollectionTable(name="check13", joinColumns=@JoinColumn(name="preventiveMaintenance_id"))
+	@Column(name="check13")
+	private Set<String> check13 = new HashSet<String>();
+
+	@JsonIgnore
+	@ElementCollection(fetch=FetchType.EAGER)
+	@CollectionTable(name="check14", joinColumns=@JoinColumn(name="preventiveMaintenance_id"))
+	@Column(name="check14")
+	private Set<String> check14 = new HashSet<String>();
+
+	@JsonIgnore
+	private Long yearReport;
+	
 	public Long getId() {
 		return id;
 	}
@@ -156,126 +202,143 @@ public class PreventiveMaintenance implements Serializable {
 		this.approvedDate = approvedDate;
 	}
 
-	public List<String> getCheckAll() {
+	public Set<String> getCheckAll() {
 		return checkAll;
 	}
 
-	public void setCheckAll(List<String> checkAll) {
+	public void setCheckAll(Set<String> checkAll) {
 		this.checkAll = checkAll;
 	}
 
-	/*public List<String> getCheck1() {
+	public Set<String> getCheck1() {
 		return check1;
 	}
 
-	public void setCheck1(List<String> check1) {
+	public void setCheck1(Set<String> check1) {
 		this.check1 = check1;
 	}
 
-	public List<String> getCheck2() {
+	public Set<String> getCheck2() {
 		return check2;
 	}
 
-	public void setCheck2(List<String> check2) {
+	public void setCheck2(Set<String> check2) {
 		this.check2 = check2;
 	}
 
-	public List<String> getCheck3() {
+	public Set<String> getCheck3() {
 		return check3;
 	}
 
-	public void setCheck3(List<String> check3) {
+	public void setCheck3(Set<String> check3) {
 		this.check3 = check3;
 	}
 
-	public List<String> getCheck4() {
+	public Set<String> getCheck4() {
 		return check4;
 	}
 
-	public void setCheck4(List<String> check4) {
+	public void setCheck4(Set<String> check4) {
 		this.check4 = check4;
 	}
 
-	public List<String> getCheck5() {
+	public Set<String> getCheck5() {
 		return check5;
 	}
 
-	public void setCheck5(List<String> check5) {
+	public void setCheck5(Set<String> check5) {
 		this.check5 = check5;
 	}
 
-	public List<String> getCheck6() {
+	public Set<String> getCheck6() {
 		return check6;
 	}
 
-	public void setCheck6(List<String> check6) {
+	public void setCheck6(Set<String> check6) {
 		this.check6 = check6;
 	}
 
-	public List<String> getCheck7() {
+	public Set<String> getCheck7() {
 		return check7;
 	}
 
-	public void setCheck7(List<String> check7) {
+	public void setCheck7(Set<String> check7) {
 		this.check7 = check7;
 	}
 
-	public List<String> getCheck8() {
+	public Set<String> getCheck8() {
 		return check8;
 	}
 
-	public void setCheck8(List<String> check8) {
+	public void setCheck8(Set<String> check8) {
 		this.check8 = check8;
 	}
 
-	public List<String> getCheck9() {
+	public Set<String> getCheck9() {
 		return check9;
 	}
 
-	public void setCheck9(List<String> check9) {
+	public void setCheck9(Set<String> check9) {
 		this.check9 = check9;
 	}
 
-	public List<String> getCheck10() {
+	public Set<String> getCheck10() {
 		return check10;
 	}
 
-	public void setCheck10(List<String> check10) {
+	public void setCheck10(Set<String> check10) {
 		this.check10 = check10;
 	}
 
-	public List<String> getCheck11() {
+	public Set<String> getCheck11() {
 		return check11;
 	}
 
-	public void setCheck11(List<String> check11) {
+	public void setCheck11(Set<String> check11) {
 		this.check11 = check11;
 	}
 
-	public List<String> getCheck12() {
+	public Set<String> getCheck12() {
 		return check12;
 	}
 
-	public void setCheck12(List<String> check12) {
+	public void setCheck12(Set<String> check12) {
 		this.check12 = check12;
 	}
 
-	public List<String> getCheck13() {
+	public Set<String> getCheck13() {
 		return check13;
 	}
 
-	public void setCheck13(List<String> check13) {
+	public void setCheck13(Set<String> check13) {
 		this.check13 = check13;
 	}
 
-	public List<String> getCheck14() {
+	public Set<String> getCheck14() {
 		return check14;
 	}
 
-	public void setCheck14(List<String> check14) {
+	public void setCheck14(Set<String> check14) {
 		this.check14 = check14;
 	}
-*/
+
+
+	public Long getYearReport() {
+		return yearReport;
+	}
+
+	public void setYearReport(Long yearReport) {
+		this.yearReport = yearReport;
+	}
+
+	
+	public boolean isCompleted() {
+		return isCompleted;
+	}
+
+	public void setCompleted(boolean isCompleted) {
+		this.isCompleted = isCompleted;
+	}
 
 	@Override
 	public String toString() {
@@ -343,6 +406,7 @@ public class PreventiveMaintenance implements Serializable {
 			return false;
 		return true;
 	}
+
 
 
 

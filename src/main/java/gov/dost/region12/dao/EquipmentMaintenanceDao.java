@@ -13,9 +13,9 @@ public interface EquipmentMaintenanceDao {
 	
 	void delete(Long id);
 	
-	List<EquipmentMaintenance> findAll();
+	List<EquipmentMaintenance> findAll(Long yearReportId);
 	
-	List<EquipmentMaintenance> findByUnit(Unit unit);
+	List<EquipmentMaintenance> findByUnit(Unit unit, Long yearReportId);
 	
 	
 }

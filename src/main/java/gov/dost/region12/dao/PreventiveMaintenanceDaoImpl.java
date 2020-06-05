@@ -35,10 +35,23 @@ public class PreventiveMaintenanceDaoImpl extends AbstractDao<Long, PreventiveMa
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<PreventiveMaintenance> findAll() {
+	public List<PreventiveMaintenance> findAll(Long yearReportId) {
 		Criteria crit = createEntityCriteria();
+		crit.add(Restrictions.eq("yearReport", yearReportId));
+		crit.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 		crit.addOrder(Order.asc("id"));
 		return (List<PreventiveMaintenance>)crit.list();
+	}
+
+	@Override
+	public List<PreventiveMaintenance> findByCompleted(Long yearReportId) {
+		Criteria crit = createEntityCriteria();
+		crit.add(Restrictions.eq("yearReport", yearReportId));
+		crit.add(Restrictions.eq("isCompleted", true));
+		crit.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+		crit.addOrder(Order.asc("id"));
+		return (List<PreventiveMaintenance>)crit.list();
+
 	}
 	
 }

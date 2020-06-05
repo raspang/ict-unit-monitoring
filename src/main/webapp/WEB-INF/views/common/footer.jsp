@@ -1,7 +1,7 @@
     <footer>
       <div class="footer-wrapper">
         <h5>DOST XII-ICT &copy;2020</h5>
-		<small>Developed by: Ras Pangcoga</small>
+		<small>Dev by: Ras Pangcoga</small>
       </div>
     </footer>
 

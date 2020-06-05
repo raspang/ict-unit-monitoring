@@ -14,9 +14,9 @@ public interface RequestDao {
 	
 	void delete(Long id);
 	
-	List<Request> findAll();
+	List<Request> findAll(Long yearReportId);
 	
-	List<Request> findByUnit(Unit unit);
+	List<Request> findByUnit(Unit unit, Long yearReportId);
 
 }
 

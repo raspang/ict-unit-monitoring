@@ -48,8 +48,11 @@ public class EquipmentMaintenance implements Serializable{
 	
 	private String remark;
 
+	private Long yearReport;
+	
 	@Transient
 	private Long unitId;
+	
 	
 	public Long getId() {
 		return id;
@@ -100,6 +103,14 @@ public class EquipmentMaintenance implements Serializable{
 		this.remark = remark;
 	}
 
+
+	public Long getYearReport() {
+		return yearReport;
+	}
+
+	public void setYearReport(Long yearReport) {
+		this.yearReport = yearReport;
+	}
 
 	public Long getUnitId() {
 		if(request != null)

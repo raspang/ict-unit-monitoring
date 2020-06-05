@@ -89,7 +89,7 @@
 					</div>
 
 					<div class="admin-form">
-						<label for="isApproved">Status:</label>
+						<label for="isApproved"><i>Status:</i></label>
 						<form:radiobutton class="radio-form" id="isApproved"
 							path="isApproved" value="false" checked="checked" />
 						Not Yet Approved

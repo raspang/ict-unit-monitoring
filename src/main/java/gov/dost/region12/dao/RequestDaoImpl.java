@@ -36,17 +36,19 @@ public class RequestDaoImpl extends AbstractDao<Long, Request>implements Request
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Request> findAll() {
+	public List<Request> findAll(Long yearReportId) {
 		Criteria crit = createEntityCriteria();
+		crit.add(Restrictions.eq("yearReport", yearReportId));
 		crit.addOrder(Order.asc("id"));
 		return (List<Request>)crit.list();
 	}
 
 	@Override
-	public List<Request> findByUnit(Unit unit) {
+	public List<Request> findByUnit(Unit unit, Long yearReportId) {
 		Criteria crit = createEntityCriteria();
 		crit.createAlias("unit", "unit");
 		crit.add(Restrictions.eq("unit", unit));
+		crit.add(Restrictions.eq("yearReport", yearReportId));
 		crit.addOrder(Order.asc("id"));
 		return (List<Request>)crit.list();
 	}
