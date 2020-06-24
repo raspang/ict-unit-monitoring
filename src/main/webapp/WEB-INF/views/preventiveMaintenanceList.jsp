@@ -17,7 +17,8 @@
 					<th>Unit</th>
 					<th>Model</th>					
 					<th>Prepared By</th>
-					<th>Prepared Date</th>		
+					<th>Prepared Date</th>
+					<th></th>	
 					<th></th>
 				</tr>
 			</thead>

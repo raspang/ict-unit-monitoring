@@ -33,7 +33,11 @@
 		window.userRole = 'ADMIN';
 	</script>
 </sec:authorize>
-
+<sec:authorize access="hasRole('EMPLOYEE')">
+	<script>
+		window.userRole = 'EMPLOYEE';
+	</script>
+</sec:authorize>
 
 </head>
 <body>
@@ -56,6 +60,11 @@
 					<a href="${contextRoot}/logout" style="color: blue">Logout</a></li>
 
 				</ul>
+				<c:if test="${currentYearReport eq null}">
+					<script>
+					alert("Error: Please add Current Year.")
+					</script>
+				</c:if>
 				
 			</sec:authorize>
 

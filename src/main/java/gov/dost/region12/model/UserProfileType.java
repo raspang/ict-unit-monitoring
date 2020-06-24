@@ -3,7 +3,7 @@ package gov.dost.region12.model;
 import java.io.Serializable;
 
 public enum UserProfileType implements Serializable{
-	USER("USER"),
+	EMPLOYEE("EMPLOYEE"),
 	ADMIN("ADMIN");
 	
 	String userProfileType;

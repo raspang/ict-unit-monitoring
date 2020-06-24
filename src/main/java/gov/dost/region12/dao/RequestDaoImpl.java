@@ -26,12 +26,10 @@ public class RequestDaoImpl extends AbstractDao<Long, Request>implements Request
 
 	@Override
 	public void delete(Long id) {
-
 		Criteria crit = createEntityCriteria();
 		crit.add(Restrictions.eq("id", id));
 		Request request = (Request)crit.uniqueResult();
-		delete(request);
-		
+		delete(request);		
 	}
 
 	@SuppressWarnings("unchecked")
@@ -49,7 +47,7 @@ public class RequestDaoImpl extends AbstractDao<Long, Request>implements Request
 		crit.createAlias("unit", "unit");
 		crit.add(Restrictions.eq("unit", unit));
 		crit.add(Restrictions.eq("yearReport", yearReportId));
-		crit.addOrder(Order.asc("id"));
+		crit.addOrder(Order.desc("id"));
 		return (List<Request>)crit.list();
 	}
 	

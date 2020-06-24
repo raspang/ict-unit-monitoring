@@ -36,16 +36,16 @@ public class JasperReportUtil {
 
 	public JasperReport getCompiledFile(String fileName, HttpServletRequest request) throws JRException {
 		System.out.println(
-				"path " + request.getSession().getServletContext().getRealPath("/jasper/" + fileName + ".jasper"));
+				"path " + request.getSession().getServletContext().getRealPath("/static/jasper/" + fileName + ".jasper"));
 	
 		
 		File reportFile = new File(
-				request.getSession().getServletContext().getRealPath("/jasper/" + fileName + ".jasper"));
+				request.getSession().getServletContext().getRealPath("/static/jasper/" + fileName + ".jasper"));
 		// If compiled file is not found, then compile XML template
 		if (!reportFile.exists()) {
 			JasperCompileManager.compileReportToFile(
-					request.getSession().getServletContext().getRealPath("/jasper/" + fileName + ".jrxml"),
-					request.getSession().getServletContext().getRealPath("/jasper/" + fileName + ".jasper"));
+					request.getSession().getServletContext().getRealPath("/static/jasper/" + fileName + ".jrxml"),
+					request.getSession().getServletContext().getRealPath("/static/jasper/" + fileName + ".jasper"));
 		}
 		JasperReport jasperReport = (JasperReport) JRLoader.loadObjectFromFile(reportFile.getPath());
 		
@@ -66,7 +66,7 @@ public class JasperReportUtil {
 	}
 
 	public void generateReportPDF(HttpServletResponse resp, 
-			Map parameters, 
+			Map<String, Object> parameters, 
 			List<Map<String, ?>> fields,
 			JasperReport jasperReport)
 			throws JRException, NamingException, SQLException, IOException {
@@ -74,7 +74,7 @@ public class JasperReportUtil {
 		//JasperRunManager.runReportToHtmlFile(sourceFileName, params, jrDataSource)
 
 		JRDataSource jrDataSource = new JRBeanCollectionDataSource(fields);
-		
+	
 		bytes = JasperRunManager.runReportToPdf(jasperReport, parameters, jrDataSource);
 		resp.reset();
 		resp.resetBuffer();

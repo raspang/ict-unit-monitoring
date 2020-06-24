@@ -79,7 +79,7 @@ public class Request implements Serializable{
 	public Request() {
 		super();
 		unit = new Unit();
-		requestBy = new User();
+		date = new Date();
 		recommendedBy = new User();
 		inspectedBy = new User();
 		notedBy = new User();

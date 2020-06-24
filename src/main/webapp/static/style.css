@@ -307,31 +307,29 @@ footer h5 {
 }
 
 .admin-main-header {
-  color: white;
-  display: block;
-  text-align: left;
-  padding: 2rem 0 0 2rem;
-  margin: 1rem;
+	color: white;
+	display: block;
+	text-align: left;
+	padding: 2rem 0 0 2rem;
+	margin: 1rem;
 }
+
 .admin-main-header h1 {
-  padding: 0 0 1rem 0;
+	padding: 0 0 1rem 0;
 }
 
 .dataTables_length {
-	display : none;
+	display: none;
 	/*margin-top: 1rem;
 	margin-bottom: 2rem; */
-	
 }
-
-
 
 div.dataTables_wrapper, div.dataTables_filter {
 	text-align: center;
 	display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 
 div.dataTables_wrapper div.dataTables_filter input {
@@ -346,7 +344,6 @@ div.dataTables_wrapper div.dataTables_filter input {
 }
 
 .paginate_button {
-
 	margin: 1rem;
 	font-size: 1.5rem;
 }
@@ -385,7 +382,6 @@ div.dataTables_wrapper div.dataTables_paginate {
 }
 
 .admin-form-check {
-
 	text-align: right;
 	display: flex;
 	flex-wrap: wrap
@@ -406,13 +402,14 @@ div.dataTables_wrapper div.dataTables_paginate {
 	flex-wrap: wrap;
 }
 
-input[type=checkbox] + label {
-  color: #ccc;
-  font-style: italic;
-} 
-input[type=checkbox]:checked + label {
-  color: #008000;
-  font-style: normal;
+input[type=checkbox]+label {
+	color: #ccc;
+	font-style: italic;
+}
+
+input[type=checkbox]:checked+label {
+	color: #008000;
+	font-style: normal;
 }
 
 .form-admin-wrapper label {
@@ -464,7 +461,7 @@ input[type=checkbox]:checked + label {
 	cursor: pointer;
 }
 
-.form-wrapper-admin-board{
+.form-wrapper-admin-board {
 	background: rgba(19, 28, 39, 0.8);
 	color: white;
 	border-radius: 10px;
@@ -472,7 +469,7 @@ input[type=checkbox]:checked + label {
 	max-width: 90%;
 	margin: 1rem auto;
 	padding: 1rem;
-	display:flex;
+	display: flex;
 	flex-wrap: wrap;
 }
 
@@ -481,11 +478,13 @@ input[type=checkbox]:checked + label {
 	margin: 0rem 2rem;
 	max-width: 20rem;
 }
+
 .form-wrapper-admin-board select {
 	flex: 1 1 10rem;
 	margin: 0rem 2rem;
 	max-width: 20rem;
 }
+
 .form-wrapper-admin-board button {
 	flex: 1 1 10rem;
 	margin: 0rem 2rem;
@@ -495,8 +494,8 @@ input[type=checkbox]:checked + label {
 	background-color: #525f09;
 	color: white;
 	cursor: pointer;
-	
 }
+
 .form-wrapper-admin-board input {
 	flex: 1 1 10rem;
 	margin: 0rem 2rem;
@@ -504,6 +503,11 @@ input[type=checkbox]:checked + label {
 	padding: 1rem 3rem;
 }
 
+.form-success {
+	padding: 4rem;
+	margin: 5rem;
+	color: lawngreen;
+}
 
 @media screen and (max-width: 842px) {
 	/* form admin */
@@ -511,9 +515,9 @@ input[type=checkbox]:checked + label {
 		grid-template-rows: repeat(1, 1fr);
 	}
 	.admin-side ul li {
-	 	padding: 2rem;
+		padding: 2rem;
 	}
 	.admin-side-current {
-	border-radius: 1rem;
+		border-radius: 1rem;
 	}
 }

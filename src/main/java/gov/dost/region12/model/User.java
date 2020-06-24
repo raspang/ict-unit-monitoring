@@ -83,13 +83,15 @@ public class User implements Serializable{
 
 	
 	@Transient
-	private String fullName;
+	private String fullName = "";
 	
 
 	
 	public User() {
 		super();
-		fullName ="";
+		firstName = "";
+		lastName = "";
+		middleName = "";
 	}
 
 	public Long getId() {
@@ -200,18 +202,15 @@ public class User implements Serializable{
 		this.userProfiles = userProfiles;
 	}
 
-	
 	public String getFullName() {
-		if(lastName != null && firstName != null)
-		return lastName+", "+firstName;
-		return "";
+		if(lastName.isEmpty() && firstName.isEmpty())
+			return "Select";
+		return lastName.concat(", ").concat(firstName);		
 	}
 
 	public void setFullName(String fullName) {
 		this.fullName = fullName;
 	}
-
-
 
 	@Override
 	public int hashCode() {

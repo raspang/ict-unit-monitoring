@@ -63,5 +63,11 @@ public class UnitServiceImpl implements UnitService{
 		return dao.findAll();
 	}
 
+	@Override
+	public List<Unit> findAllUnitsByUser(User user) {
+		// TODO Auto-generated method stub
+		return dao.findAllUnitsByUser(user);
+	}
+
 
 }

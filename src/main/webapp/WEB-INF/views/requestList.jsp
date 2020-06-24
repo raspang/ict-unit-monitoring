@@ -11,7 +11,7 @@
 		</div>
 		<a href="${contextRoot}/admin/newrequest"
 			class="admin-form-button-new">Add entry</a>
-		<div class="table-responsive">
+	
 			<table id="requestList" class="dataTable">
 				<thead>
 					<tr>
@@ -19,16 +19,15 @@
 						<th>Unit Name</th>
 						<th>Unit Model No.</th>
 						<th>Date</th>
-						<th>Request By</th>
+						<th>Requested By</th>
 						<th>Description Of Malfunction</th>
-						<th>Recommended By</th>
-						<th>Recommendation</th>
+						<th></th>
 						<th></th>
 					</tr>
 				</thead>
 
 			</table>
-		</div>
+		
 
 	</div>
 </section>

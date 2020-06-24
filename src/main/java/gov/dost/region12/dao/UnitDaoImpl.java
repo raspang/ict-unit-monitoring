@@ -8,6 +8,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import gov.dost.region12.model.Unit;
+import gov.dost.region12.model.User;
 
 
 
@@ -37,6 +38,15 @@ public class UnitDaoImpl extends AbstractDao<Long, Unit> implements UnitDao{
 	@Override
 	public List<Unit> findAll() {
 		Criteria crit = createEntityCriteria();
+		crit.addOrder(Order.asc("id"));
+		return (List<Unit>)crit.list();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Unit> findAllUnitsByUser(User user) {
+		Criteria crit = createEntityCriteria();
+		crit.add(Restrictions.eq("receivedBy", user));
 		crit.addOrder(Order.asc("id"));
 		return (List<Unit>)crit.list();
 	}

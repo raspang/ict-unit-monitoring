@@ -17,6 +17,7 @@
 					<th>Model No</th>
 					<th>Serial No</th>
 					<th>Other Component</th>
+					<th></th>
 					<th>Record Maintenance</th>
 				</tr>
 			</thead>

@@ -1,9 +1,18 @@
 package gov.dost.region12.controller;
 
+import java.io.IOException;
+import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
-
+import java.util.Map;
+import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -33,6 +42,7 @@ import gov.dost.region12.model.Request;
 import gov.dost.region12.model.Unit;
 import gov.dost.region12.model.User;
 import gov.dost.region12.model.UserProfile;
+import gov.dost.region12.model.UserProfileType;
 import gov.dost.region12.model.YearReport;
 import gov.dost.region12.service.CurYearReportService;
 import gov.dost.region12.service.EquipmentMaintenanceService;
@@ -41,6 +51,9 @@ import gov.dost.region12.service.RequestService;
 import gov.dost.region12.service.UnitService;
 import gov.dost.region12.service.UserProfileService;
 import gov.dost.region12.service.UserService;
+import gov.dost.region12.util.JasperReportUtil;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperReport;
 
 @Controller
 @RequestMapping("/")
@@ -109,15 +122,15 @@ public class AppController {
 	}
 	/* end Json */
 
-	
 	/* Controller */
 	@RequestMapping(value = { "/" }, method = RequestMethod.GET)
 	public String welcome(ModelMap model) {
 		model.addAttribute("loggedinuser", getPrincipal());
-		if (isCurrentAuthenticationAnonymous())
-			return "index";
-		else
+
+		if (!isCurrentAuthenticationAnonymous() && getUserRole().equals(UserProfileType.ADMIN.getUserProfileType()))
 			return "redirect:/admin/request";
+		else
+			return "index";
 
 	}
 
@@ -510,17 +523,71 @@ public class AppController {
 
 		return "redirect:/admin/yearreport";
 	}
-	
+
 	@RequestMapping(value = { "/admin/objective" }, method = RequestMethod.GET)
 	public String objective(ModelMap model) {
-		
+
 		model.addAttribute("noUnits", unitService.findAllUnits().size());
 		model.addAttribute("noPreventiveManagementPerformed", preventiveMaintenanceService.findByCompleted().size());
-		
+
 		return "objective";
 	}
-	
 
+	@RequestMapping(value = "/admin/{format}/pdf")
+	public String generateReport(@RequestParam(name = "id") String id, @PathVariable String format,
+			HttpServletRequest request, HttpServletResponse response) throws JRException, IOException, NamingException {
+
+		String reportFileName = "request form";
+		JasperReportUtil jrdao = new JasperReportUtil();
+
+		HashMap<String, Object> hmParams = new HashMap<String, Object>();
+		List<Map<String, ?>> listCodes = new ArrayList<Map<String, ?>>();
+
+		if (format.equals("request")) {
+			reportFileName = "request form";
+	//		for (Request r : requestService.findAllRequests()) {
+				Request r = requestService.findById(Long.parseLong(id));
+				Map<String, Object> m = new HashMap<String, Object>();
+				m.put("item", r.getUnit().getEquipmentName());
+				m.put("date1", dateConvert(r.getDate()));
+				m.put("division", r.getRequestBy().getDivision());
+				m.put("descModel", r.getUnit().getOtherComponent());
+				m.put("serialNumber", r.getUnit().getSerialNo());
+				m.put("descMalfunction", r.getDescriptionOfMalfunction());
+				m.put("receivedBy", r.getUnit().getReceivedBy().getFullName());
+				m.put("date2", dateConvert(r.getUnit().getDateRecieved()));
+				m.put("requestBy", r.getRequestBy() != null ? r.getRequestBy().getFullName() : "");
+				m.put("recommendedBy", r.getRecommendedBy() != null ? r.getRecommendedBy().getFullName() : "");
+				m.put("recommendation", r.getRecommendation());
+				m.put("inspectedBy", r.getInspectedBy() != null ? r.getInspectedBy().getFullName() : "");
+				m.put("noted", r.getNotedBy() != null ? r.getNotedBy().getFullName() : "");			
+				m.put("repairedBy", r.getInHouseRepairedBy() != null ? r.getInHouseRepairedBy().getFullName() : "");
+				m.put("receivedBy2", r.getInHouseReceivedBy() != null ? r.getInHouseReceivedBy().getFullName() : "");
+				listCodes.add(m);
+//
+//			?
+			// hmParams.put("item",requestService.findAllRequests().get(0).getUnit().getEquipmentName());
+		}
+		JasperReport jasperReport = jrdao.getCompiledFile(reportFileName, request);
+		try {
+			jrdao.generateReportPDF(response, hmParams, listCodes, jasperReport);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} // For
+			// PDF
+			// report
+
+		return null;
+	}
+
+	private String dateConvert(Date date) {
+		if (date == null)
+			return null;
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		String strDate = dateFormat.format(date);
+		return strDate;
+	}
 	/**
 	 * This method will list all existing users.
 	 */
@@ -618,16 +685,40 @@ public class AppController {
 		return "redirect:/admin/user";
 	}
 
+	@RequestMapping(value = { "/employee/newrequest" }, method = RequestMethod.GET)
+	public String newRequestEmployee(ModelMap model) {
+		Request request = new Request();
+		User user = userService.findBySSO(getPrincipal());
+		List<Unit> units = unitService.findAllUnitsByUser(user);
+		model.addAttribute("request", request);
+		model.addAttribute("users", Arrays.asList(user));
+		model.addAttribute("units", units);
+		model.addAttribute("edit", false);
+		model.addAttribute("loggedinuser", getPrincipal());
+		return "request";
+	}
+
+	@RequestMapping(value = { "/employee/newrequest" }, method = RequestMethod.POST)
+	public String saveRequestEmployee(@Valid Request request, BindingResult result, ModelMap model) {
+		if (result.hasErrors()) {
+			return "request";
+		}
+		requestService.saveRequest(request);
+		model.addAttribute("success", "Request successfully created.");
+		model.addAttribute("loggedinuser", getPrincipal());
+		// return "success";
+		return "success";
+	}
+
 	/**
 	 * This method will provide current year report
 	 */
-	
-	
+
 	@ModelAttribute("loggedinuser")
 	public String getLogggedInUser() {
 		return getPrincipal();
 	}
-	
+
 	@ModelAttribute("currentYearReport")
 	public YearReport currentYearReport() {
 		return curYearReportService.findByEnable();
@@ -658,7 +749,9 @@ public class AppController {
 	public String loginPage() {
 		if (isCurrentAuthenticationAnonymous()) {
 			return "login";
-		} else {
+		} else if (getUserRole() == UserProfileType.EMPLOYEE.getUserProfileType())
+			return "index";
+		else {
 			return "redirect:/admin/request";
 		}
 	}
@@ -701,6 +794,17 @@ public class AppController {
 	private boolean isCurrentAuthenticationAnonymous() {
 		final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		return authenticationTrustResolver.isAnonymous(authentication);
+	}
+
+	private String getUserRole() {
+		User user = userService.findBySSO(getPrincipal());
+		Iterator<UserProfile> itr = (Iterator<UserProfile>) user.getUserProfiles().iterator();
+
+		while (itr.hasNext())
+			return itr.next().getType();
+
+		return UserProfileType.EMPLOYEE.getUserProfileType();
+
 	}
 
 }

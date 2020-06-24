@@ -60,6 +60,9 @@ public class Unit implements Serializable{
 	
 	public Unit() {
 		super();
+		equipmentName = "";
+		modelNo = "";
+		serialNo = "";
 	}
 	public Long getId() {
 		return id;
@@ -124,7 +127,10 @@ public class Unit implements Serializable{
 	}
 
 	public String getDisplayUnit() {
-		String unit = equipmentName.concat(" (").concat(modelNo).concat(")").concat("\n").concat(serialNo);
+		if(equipmentName.isEmpty() && modelNo.isEmpty() && serialNo.isEmpty()) {
+			return "Select";
+		}
+		String unit = equipmentName.concat(" (").concat(modelNo).concat(") ").concat(serialNo);
 		return unit;
 	}
 	

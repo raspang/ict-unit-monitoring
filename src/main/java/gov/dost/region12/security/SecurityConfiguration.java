@@ -39,6 +39,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 				.antMatchers("/list").access("hasRole('USER') or hasRole('ADMIN')")
 				.antMatchers("/admin/*").access("hasRole('ADMIN')")
+				.antMatchers("/employee/*").access("hasRole('EMPLOYEE')")
 				.antMatchers("/admin/json/data/*").access("hasRole('USER') or hasRole('ADMIN')")				
 				.antMatchers("/newuser/**", "/delete-user-*").access("hasRole('ADMIN')")
 				.antMatchers("/edit-user-*").access("hasRole('ADMIN') or hasRole('USER')")

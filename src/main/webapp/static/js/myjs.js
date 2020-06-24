@@ -12,7 +12,7 @@ $(function() {
 
 		/* alert(jsonUrl); */
 		$table.DataTable({
-
+			order: [[ 0, "desc" ]],
 			lengthMenu : [ [ 15, 20, 50, -1 ],
 					[ '15 Records', '20 Records', '50 Records', 'ALL' ] ],
 			pageLength : 15,
@@ -40,12 +40,19 @@ $(function() {
 						data : 'descriptionOfMalfunction'
 					},
 					{
-
-						data : 'recommendedBy.fullName'
-
-					},
-					{
-						data : 'recommendation'
+						data : 'id',
+						bSortable : false,
+						mRender : function(data, type, row) {
+							var str = '';
+							if (userRole === 'ADMIN') {
+								str += '<a href="' + window.contextRoot
+										+ '/admin/request/pdf?id=' + data
+										+ '" class="">'+'<img src="'+window.contextRoot+'/static/icons/icons8-export-pdf-48.png" alt="edit" width="25px" height="24px"/>'+'</a>&nbsp;';
+								
+							}
+							
+							return str;
+						}
 
 					},
 					{
@@ -56,11 +63,12 @@ $(function() {
 							if (userRole === 'ADMIN') {
 								str += '<a href="' + window.contextRoot
 										+ '/admin/edit-request-' + data
-										+ '" class="">edit</a>&nbsp;';
+										+ '" class="">'+'<img src="'+window.contextRoot+'/static/icons/icons8-edit-48.png" alt="edit" width="25px" height="24px"/>'+'</a>&nbsp;';
 								str += '&nbsp;<a href="' + window.contextRoot
 										+ '/admin/delete-request-' + data
-										+ '" class="">delete</a>';
+										+ '" class="">'+'<img src="'+window.contextRoot+'/static/icons/icons8-delete-64.png" alt="edit" width="25px" height="24px"/>'+'</a>';
 							}
+							
 							return str;
 						}
 
@@ -82,7 +90,7 @@ $(function() {
 
 		/* alert(jsonUrl); */
 		$tableUser.DataTable({
-
+			order: [[ 1, "desc" ]],
 			lengthMenu : [ [ 15, 20, 50, -1 ],
 					[ '15 Records', '20 Records', '50 Records', 'ALL' ] ],
 			pageLength : 15,
@@ -115,10 +123,10 @@ $(function() {
 							if (userRole === 'ADMIN') {
 								str += '<a href="' + window.contextRoot
 										+ '/admin/edit-user-' + data
-										+ '" class="">edit</a>&nbsp;';
+										+ '" class="">'+'<img src="'+window.contextRoot+'/static/icons/icons8-edit-48.png" alt="edit" width="25px" height="24px"/>'+'</a>&nbsp;';
 								str += '&nbsp;<a href="' + window.contextRoot
 										+ '/admin/delete-person-' + data
-										+ '" class="">delete</a>';
+										+ '" class="">'+'<img src="'+window.contextRoot+'/static/icons/icons8-delete-64.png" alt="edit" width="25px" height="24px"/>'+'</a>';
 							}
 							return str;
 
@@ -142,7 +150,7 @@ $(function() {
 
 		/* alert(jsonUrl); */
 		$tableUnit.DataTable({
-
+			order: [[ 0, "desc" ]],
 			lengthMenu : [ [ 15, 20, 50, -1 ],
 					[ '15 Records', '20 Records', '50 Records', 'ALL' ] ],
 			pageLength : 15,
@@ -151,7 +159,7 @@ $(function() {
 				dataSrc : ''
 			},
 			columns : [
-
+					
 					{
 						data : 'equipmentName'
 					},
@@ -175,10 +183,10 @@ $(function() {
 							if (userRole === 'ADMIN') {
 								str += '<a href="' + window.contextRoot
 										+ '/admin/edit-unit-' + data
-										+ '" class="">edit</a>&nbsp;';
+										+ '" class="">'+'<img src="'+window.contextRoot+'/static/icons/icons8-edit-48.png" alt="edit" width="25px" height="24px"/>'+'</a>&nbsp;';
 								str += '&nbsp;<a href="' + window.contextRoot
 										+ '/admin/delete-unit-' + data
-										+ '" class="">delete</a>';
+										+ '" class="">'+'<img src="'+window.contextRoot+'/static/icons/icons8-delete-64.png" alt="edit" width="25px" height="24px"/>'+'</a>';
 							}
 							return str;
 						}
@@ -201,7 +209,7 @@ $(function() {
 
 		/* alert(jsonUrl); */
 		$tableEquipmentMaintenanceList.DataTable({
-
+			order: [[ 0, "desc" ]],
 			lengthMenu : [ [ 15, 20, 50, -1 ],
 					[ '15 Records', '20 Records', '50 Records', 'ALL' ] ],
 			pageLength : 15,
@@ -223,7 +231,22 @@ $(function() {
 					{
 						data : 'otherComponent'
 					},
+					{
+						data : 'id',
+						bSortable : false,
+						mRender : function(data, type, row) {
+							var str = '';
+							if (userRole === 'ADMIN') {
+								str += '<a href="' + window.contextRoot
+										+ '/admin/edit-request-' + data
+										+ '" class="">'+'<img src="'+window.contextRoot+'/static/icons/icons8-export-pdf-48.png" alt="edit" width="25px" height="24px"/>'+'</a>&nbsp;';
+								
+							}
+							
+							return str;
+						}
 
+					},
 					{
 						data : 'id',
 						bSortable : false,
@@ -231,7 +254,7 @@ $(function() {
 							var str = '';
 							str += '<a href="' + window.contextRoot
 									+ '/admin/view-maintenance-unit-' + data
-									+ '" class="">View</a>&nbsp;';
+									+ '" class="">'+'<img src="'+window.contextRoot+'/static/icons/icons8-view-64.png" alt="edit" width="25px" height="24px"/>'+'</a>&nbsp;';
 							return str;
 						}
 
@@ -256,7 +279,7 @@ $(function() {
 
 		/* alert(jsonUrl); */
 		$tableEquipmentMaintenanceUnitList.DataTable({
-
+			order: [[ 0, "desc" ]],
 			lengthMenu : [ [ 15, 20, 50, -1 ],
 					[ '15 Records', '20 Records', '50 Records', 'ALL' ] ],
 			pageLength : 15,
@@ -273,7 +296,7 @@ $(function() {
 			}, {
 				data : 'date'
 			}, {
-				data : 'performedBy'
+				data : 'performedBy.fullName'
 			}, {
 				data : 'remark'
 			}, {
@@ -284,10 +307,10 @@ $(function() {
 					if (userRole === 'ADMIN') {
 						str += '<a href="' + window.contextRoot
 								+ '/admin/edit-equipmentmaintenance-' + data
-								+ '" class="">edit</a>&nbsp;';
+								+ '" class="">'+'<img src="'+window.contextRoot+'/static/icons/icons8-edit-48.png" alt="edit" width="25px" height="24px"/>'+'</a>&nbsp;';
 						str += '&nbsp;<a href="' + window.contextRoot
 								+ '/admin/delete-equipmentmaintenance-' + data
-								+ '" class="">delete</a>';
+								+ '" class="">'+'<img src="'+window.contextRoot+'/static/icons/icons8-delete-64.png" alt="edit" width="25px" height="24px"/>'+'</a>';
 					}
 					return str;
 				}
@@ -336,7 +359,23 @@ if ($tableUser.length) {
 				},
 				{
 					data : 'preparedDate'
-				},				
+				},
+				{
+					data : 'id',
+					bSortable : false,
+					mRender : function(data, type, row) {
+						var str = '';
+						if (userRole === 'ADMIN') {
+							str += '<a href="' + window.contextRoot
+									+ '/admin/edit-request-' + data
+									+ '" class="">'+'<img src="'+window.contextRoot+'/static/icons/icons8-export-pdf-48.png" alt="edit" width="25px" height="24px"/>'+'</a>&nbsp;';
+							
+						}
+						
+						return str;
+					}
+
+				},
 				{
 					data : 'id',
 					bSortable : false,
@@ -345,10 +384,10 @@ if ($tableUser.length) {
 						if (userRole === 'ADMIN') {
 							str += '<a href="' + window.contextRoot
 									+ '/admin/edit-preventivemaintenance-' + data
-									+ '" class="">edit</a>&nbsp;';
+									+ '" class="">'+'<img src="'+window.contextRoot+'/static/icons/icons8-delete-64.png" alt="edit" width="25px" height="24px"/>'+'</a>&nbsp;';
 							str += '&nbsp;<a href="' + window.contextRoot
 									+ '/admin/delete-preventivemaintenance-' + data
-									+ '" class="">delete</a>';
+									+ '" class="">'+'<img src="'+window.contextRoot+'/static/icons/icons8-edit-48.png" alt="edit" width="25px" height="24px"/>'+'</a>';
 						}
 						return str;
 

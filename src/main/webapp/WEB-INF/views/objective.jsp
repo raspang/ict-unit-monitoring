@@ -11,10 +11,12 @@
 			<div class="admin-main-header">
 				<h1>Monitoring Report of Preventive Maintenance Functional
 					Objective</h1>
+					
 				<p style="display: inline">
 					For the Month of
 					<form:form action="${contextRoot}/admin/objective" method="GET"
 						style="display:inline">
+						
 						<select name="month" onchange="this.form.submit()">
 							<option value="">Select</option>
 							<option value="January">January</option>
@@ -31,10 +33,11 @@
 							<option value="December">December</option>
 						</select>
 					</form:form>
+					<a href="" class="float:left"><img src="${contextRoot}/static/icons/icons8-export-pdf-48.png" alt="edit" width="25px" height="24px"/></a>
 				</p>
 
 			</div>
-
+			
 			<div class="form-wrapper-admin-board">
 				<label>No. of Computer Unit Available</label>
 				<label>No. of Preventive Management Performed</label>
