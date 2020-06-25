@@ -118,38 +118,41 @@
 						</div>
 					</div>
 
+
 					<div class="form-admin-input-check">
-						<label for="check6">Scandisk:</label>
+						<label for="check6">Disk Defragmenter:</label>
 						<div class="form-admin-input-check">
 							<form:checkboxes items="${months}" path="check6" />
 						</div>
 					</div>
 
 					<div class="form-admin-input-check">
-						<label for="check7">Disk Defragmenter:</label>
+						<label for="check7">Uninstall Unnecessary Programs:</label>
 						<div class="form-admin-input-check">
 							<form:checkboxes items="${months}" path="check7" />
 						</div>
 					</div>
 
 					<div class="form-admin-input-check">
-						<label for="check8">Uninstall Unnecessary Programs:</label>
+						<label for="check8">Clean inside the system unit and
+							peripherals:</label>
 						<div class="form-admin-input-check">
 							<form:checkboxes items="${months}" path="check8" />
 						</div>
 					</div>
 
 					<div class="form-admin-input-check">
-						<label for="check9">Clean inside the system unit and
-							peripherals:</label>
+						<label for="check9">Reseat all socketed chips on the
+							system board and peripheral cards:</label>
 						<div class="form-admin-input-check">
 							<form:checkboxes items="${months}" path="check9" />
 						</div>
 					</div>
 
+
 					<div class="form-admin-input-check">
-						<label for="check10">Reseat all socketed chips on the
-							system board and peripheral cards:</label>
+						<label for="check10">Check CPU and Power Supply Fans
+							connectors and proper operation:</label>
 						<div class="form-admin-input-check">
 							<form:checkboxes items="${months}" path="check10" />
 						</div>
@@ -157,16 +160,7 @@
 
 
 					<div class="form-admin-input-check">
-						<label for="check11">Check CPU and Power Supply Fans
-							connectors and proper operation:</label>
-						<div class="form-admin-input-check">
-							<form:checkboxes items="${months}" path="check11" />
-						</div>
-					</div>
-
-
-					<div class="form-admin-input-check">
-						<label for="check12">Check CMOS Battery:</label>
+						<label for="check11">Check CMOS Battery:</label>
 						<div class="form-admin-input-check">
 							<form:checkboxes items="${months}" path="check12" />
 						</div>
@@ -174,17 +168,17 @@
 
 
 					<div class="form-admin-input-check">
-						<label for="check13">Check cables and connectors
+						<label for="check12">Check cables and connectors
 							conditions (Input and output Ports):</label>
 						<div class="form-admin-input-check">
-							<form:checkboxes items="${months}" path="check13" />
+							<form:checkboxes items="${months}" path="check12" />
 						</div>
 					</div>
 
 					<div class="form-admin-input-check">
-						<label for="check14">Check AVR and UPS Voltage Output:</label>
+						<label for="check13">Check AVR and UPS Voltage Output:</label>
 						<div class="form-admin-input-check">
-							<form:checkboxes items="${months}" path="check14" />
+							<form:checkboxes items="${months}" path="check13" />
 						</div>
 					</div>
 					<hr>
@@ -194,7 +188,7 @@
 							<button type="submit">Update</button>
 						</c:when>
 						<c:otherwise>
-							<button type="submit">Register</button>
+							<button type="submit">Save</button>
 						</c:otherwise>
 					</c:choose>
 

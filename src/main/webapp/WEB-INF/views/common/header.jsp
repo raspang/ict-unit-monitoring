@@ -26,6 +26,7 @@
 <script>
 	window.contextRoot = '${contextRoot}'
 	window.userRole = '';
+	window.monthX = '${monthX}';
 </script>
 
 <sec:authorize access="hasRole('ADMIN')">

@@ -1,0 +1,546 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="preventive" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="990b6cae-0860-423b-bba6-e641e3d9477a">
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="year" class="java.lang.String"/>
+	<field name="nameOfEquipment" class="java.lang.String"/>
+	<field name="codeNo" class="java.lang.String"/>
+	<field name="location" class="java.lang.String"/>
+	<field name="otherComponent" class="java.lang.String"/>
+	<field name="model" class="java.lang.String"/>
+	<field name="serialNo" class="java.lang.String"/>
+	<field name="dateAcquired" class="java.lang.String"/>
+	<field name="Field_1" class="java.lang.String"/>
+	<field name="Field_2" class="java.lang.String"/>
+	<field name="Field_3" class="java.lang.String"/>
+	<field name="Field_4" class="java.lang.String"/>
+	<field name="Field_5" class="java.lang.String"/>
+	<field name="Field_6" class="java.lang.String"/>
+	<field name="Field_7" class="java.lang.String"/>
+	<field name="Field_8" class="java.lang.String"/>
+	<field name="Field_9" class="java.lang.String"/>
+	<field name="Field_10" class="java.lang.String"/>
+	<field name="Field_11" class="java.lang.String"/>
+	<field name="Field_12" class="java.lang.String"/>
+	<field name="Field_13" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="86" splitType="Stretch">
+			<staticText>
+				<reportElement x="80" y="0" width="400" height="79" uuid="7ad820b8-3df5-4c0c-8e3e-1bd6cbe2a9a1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DEPARTMENT OF SCIENCE AND TECHNOLOGY
+Regional Office XII
+
+PREVENTIVE MAINTENANCE SCHEDULE
+(IT Equipment)]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="126" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="140" height="20" uuid="2a22b918-6094-45fa-a240-b71c08f96773"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[YEAR:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="20" width="140" height="20" uuid="b50df83c-0eb9-418f-8428-ff16e5c959f0"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Name of the Equipment:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="40" width="140" height="20" uuid="e051541c-0f52-4a07-bd70-1d1da45f3c74"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Code No.:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="60" width="140" height="20" uuid="b4e8cba5-a2b2-4444-a899-7f533e64ea30"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Location:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="80" width="140" height="20" uuid="1ec6b459-e0fe-42f1-bd29-c04dbeb9da49"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Other Component:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="330" y="0" width="100" height="20" uuid="092ae79f-19ee-4446-a572-3efee85b721b"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Type/Model No.:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="330" y="20" width="100" height="20" uuid="651a27d9-2096-41d3-a9ec-e364befe9feb"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Serial No.:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="330" y="40" width="100" height="20" uuid="76eef713-74d3-4229-a788-115654b06d4c"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Date Aquired:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="140" y="0" width="100" height="20" uuid="e12ee2a0-008a-4cf3-aef9-d73e1c433943"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{year}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="140" y="20" width="190" height="20" uuid="b0c4c1a4-d11b-440d-972a-c42bd3590c80"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nameOfEquipment}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="140" y="40" width="190" height="20" uuid="2f4984dc-ca16-446f-b7f8-43a1f41ed880"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{codeNo}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="140" y="60" width="190" height="20" uuid="89e48ab7-b122-4726-af0e-af457cee2239"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{location}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="140" y="80" width="340" height="20" uuid="01dae203-86f6-4128-946e-e94ef1b97270"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{otherComponent}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="430" y="0" width="120" height="20" uuid="c0edfeb1-ef3f-461e-9b8e-7ab7d64a8f03"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{model}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="430" y="20" width="120" height="20" uuid="1a0e09c2-6a08-4445-9bd5-ac3dcfb7ac13"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{serialNo}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="430" y="40" width="120" height="20" uuid="b72776f0-e83f-4b05-ab26-a6f36db9aadb"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{dateAcquired}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="42" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="200" height="40" uuid="29ea248c-43d9-4337-ac24-07fce606518c"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[MAINTENANCE OPERATION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="0" width="350" height="20" uuid="366542c1-79cd-4b5b-98a0-f19ad1b05f12"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[MAINTENANCE OPERATION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="20" width="350" height="20" uuid="fe9101d5-0021-4b5c-adc9-0ded5146ce22"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[JAN   FEB   MAR   APR   MAY   JUN   JUL   AUG   SEP   OCT   NOV   DEC]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="397" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="200" height="30" uuid="ac806783-90ba-4015-b761-5664e031f642"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[One Time Maintenance Check-up]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="30" width="200" height="30" uuid="56dacf47-fa8b-4225-9d5b-d8e5ad0b6067"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Clean windwos registry]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="60" width="200" height="30" uuid="c8440010-ed98-4d55-a5a6-dc8fa285ed53"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Delete Temporary Internet Files]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="90" width="200" height="30" uuid="8ff884af-9946-4af5-b17a-64ecb04913a9"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Disk Cleanup]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="120" width="200" height="30" uuid="6b7f4701-c56d-423c-922e-267db0d1e977"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Unistall Unnecessary Programs]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="150" width="200" height="30" uuid="60fe07fc-9d8b-4ebf-8629-1e27fe112ab8"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Clean inside the system unit and peripherals]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="180" width="200" height="30" uuid="97ae0409-7333-470f-99bf-df85170cf0d8"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Reset all socketed chips on the system board and peripheral cards]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="210" width="200" height="30" uuid="e9b34c28-7fe2-4b11-9df1-def2c5f3a3ec"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Check CPU and Power Supply Fans connectors and proper operation]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="240" width="200" height="30" uuid="8247c744-41bd-4285-8a02-f658e8002bc9"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Check CMOS Battery]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="270" width="200" height="30" uuid="b10c70a9-43f4-4fe2-bfb5-61c88469d6a5"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Check cables and connectors conditions(Input and output Ports)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="300" width="200" height="30" uuid="2ec48f59-548c-45f2-918b-d30fd2864d59"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Check AVR and UPS Voltage Output]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="330" width="200" height="30" uuid="f0d2e334-2f30-4ada-95f2-b00be3eedf83"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Update Operating System]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="360" width="200" height="30" uuid="579ac551-4faa-4978-981c-c725cb45506c"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Update Antivirus (Set to Auto Update)]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="200" y="0" width="350" height="30" uuid="44674ea2-ccc5-427e-9f60-c7eb48d17159">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e8af1439-e96f-421e-af0f-0b1a6e8c016a"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Field_1}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="200" y="30" width="350" height="30" uuid="fb53a978-4cd6-4e49-afa5-106b30d2548b">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0cfeb42f-ec20-4b41-84e6-89a6a3f1a567"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Field_2}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="200" y="60" width="350" height="30" uuid="2b573c29-a2b5-44aa-b076-ff3ab74b41e7">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e0e839b1-5c1e-4039-8010-adf2854f1ef5"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Field_3}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="200" y="90" width="350" height="30" uuid="9b5354fd-bae9-46b1-a609-66c6760e88ca">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="099c9d3d-07f4-4cd2-94bc-20fa87eb14ca"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Field_4}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="200" y="120" width="350" height="30" uuid="977e0ae3-875e-4d16-af70-14dd944e9d34">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6f5ac4f7-4ac2-4302-bae6-05b724850598"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Field_5}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="200" y="150" width="350" height="30" uuid="970c0755-db00-4738-a949-7ccc1dc3a518">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="14cc9174-ee38-4ef2-ad41-a876351fa5b5"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Field_6}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="200" y="180" width="350" height="30" uuid="99217e93-9db7-40a1-acf7-bcdd6978d476">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="839450c4-ccc8-4480-b625-d592135afbfb"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Field_7}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="200" y="210" width="350" height="30" uuid="43db1551-86ca-4960-b4de-d55aef5d3ab2">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="03be55d4-0144-4f4d-887d-4e5a7cfdb44b"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Field_8}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="200" y="240" width="350" height="30" uuid="00b98ee6-0605-487c-acf5-0228cf463437">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8ba969dc-b6ee-42e4-87c7-21604e55bc3b"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Field_9}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="200" y="270" width="350" height="30" uuid="86b2851d-de85-413a-9eef-2e14303fa015">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0898c1a8-8fa6-43c6-a525-4c5a3672bda5"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Field_10}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="200" y="300" width="350" height="30" uuid="2e40ebe0-79b0-4ca7-ab30-f173ddc6f668">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="575af72d-cfac-4e70-853a-773e8113bb46"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Field_11}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="200" y="330" width="350" height="30" uuid="aab6a293-9a91-4cc9-9c04-56fd29bfed19">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="dd1100d7-305f-4817-a95f-63fb5dd797ce"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Field_12}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="200" y="360" width="350" height="30" uuid="5a5d8126-03ab-48b8-92c3-863c03f24af9">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b7635a73-92b3-4023-8926-593cea056818"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Field_13}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="120" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="310" height="60" uuid="95834a71-cc9f-4607-a919-8ce13cdc77e9"/>
+				<textElement verticalAlignment="Top"/>
+				<text><![CDATA[Prepared by: Maintenance in-Charge (IT)
+Date:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="60" width="310" height="50" uuid="c6d3677f-00d7-45e9-9f01-d681418b7704"/>
+				<textElement verticalAlignment="Top"/>
+				<text><![CDATA[Prepared by: OIC-Administrative Division
+Date:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="340" y="10" width="100" height="30" uuid="2651c3f7-e9b0-4ccf-a893-0dca523302f0"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Legend:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="40" width="100" height="19" uuid="226d7425-2f27-43ad-a41c-6827022e21a8"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[_  Planned]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="63" width="100" height="19" uuid="8a8d8096-492a-4805-a1cf-bd436bf28efb"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[X  Completed]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>

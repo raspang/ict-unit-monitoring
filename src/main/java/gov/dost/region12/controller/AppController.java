@@ -12,12 +12,15 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
+
 import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.context.MessageSource;
 import org.springframework.security.authentication.AuthenticationTrustResolver;
 import org.springframework.security.core.Authentication;
@@ -524,17 +527,43 @@ public class AppController {
 		return "redirect:/admin/yearreport";
 	}
 
+	@SuppressWarnings("deprecation")
 	@RequestMapping(value = { "/admin/objective" }, method = RequestMethod.GET)
-	public String objective(ModelMap model) {
+	public String objective(@RequestParam(name = "month", required = false) String month, ModelMap model) {
+		List<EquipmentMaintenance> equipmentMaintenances = equipmentMaintenanceService.findAll();
 
 		model.addAttribute("noUnits", unitService.findAllUnits().size());
 		model.addAttribute("noPreventiveManagementPerformed", preventiveMaintenanceService.findByCompleted().size());
+		model.addAttribute("noOfRepairPerformed", equipmentMaintenances.size());
+
+		List<EquipmentMaintenance> repairDetails = new ArrayList<>();
+
+
+		for (EquipmentMaintenance e : equipmentMaintenances) {
+			if (month != null && e.getDate() != null && e.getDate().getMonth() + 1 == Integer.parseInt(month)) {
+				/*
+				 * causeOfRepairs.add(e.getRequest().getDescriptionOfMalfunction());
+				 * descriptionOfWorkDones.add(e.getOperationPerformed());
+				 * dateOfRepairs.add(dateStrConvert(e.getDate())); remarks.add(e.getRemark());
+				 */
+
+				repairDetails.add(e);
+			}
+			
+			
+			
+		}
+
+		model.addAttribute("repairDetails", repairDetails);
+		model.addAttribute("monthX", month);
 
 		return "objective";
 	}
 
 	@RequestMapping(value = "/admin/{format}/pdf")
-	public String generateReport(@RequestParam(name = "id") String id, @PathVariable String format,
+	public String generateReport(@RequestParam(name = "id", required=false) String id,
+			@RequestParam(name = "month", required=false) String month,
+			@PathVariable String format,
 			HttpServletRequest request, HttpServletResponse response) throws JRException, IOException, NamingException {
 
 		String reportFileName = "request form";
@@ -545,34 +574,124 @@ public class AppController {
 
 		if (format.equals("request")) {
 			reportFileName = "request form";
-	//		for (Request r : requestService.findAllRequests()) {
-				Request r = requestService.findById(Long.parseLong(id));
-				Map<String, Object> m = new HashMap<String, Object>();
-				m.put("item", r.getUnit().getEquipmentName());
-				m.put("date1", dateConvert(r.getDate()));
-				m.put("division", r.getRequestBy().getDivision());
-				m.put("descModel", r.getUnit().getOtherComponent());
-				m.put("serialNumber", r.getUnit().getSerialNo());
-				m.put("descMalfunction", r.getDescriptionOfMalfunction());
-				m.put("receivedBy", r.getUnit().getReceivedBy().getFullName());
-				m.put("date2", dateConvert(r.getUnit().getDateRecieved()));
-				m.put("requestBy", r.getRequestBy() != null ? r.getRequestBy().getFullName() : "");
-				m.put("recommendedBy", r.getRecommendedBy() != null ? r.getRecommendedBy().getFullName() : "");
-				m.put("recommendation", r.getRecommendation());
-				m.put("inspectedBy", r.getInspectedBy() != null ? r.getInspectedBy().getFullName() : "");
-				m.put("noted", r.getNotedBy() != null ? r.getNotedBy().getFullName() : "");			
-				m.put("repairedBy", r.getInHouseRepairedBy() != null ? r.getInHouseRepairedBy().getFullName() : "");
-				m.put("receivedBy2", r.getInHouseReceivedBy() != null ? r.getInHouseReceivedBy().getFullName() : "");
-				listCodes.add(m);
+			// for (Request r : requestService.findAllRequests()) {
+			Request r = requestService.findById(Long.parseLong(id));
+			Map<String, Object> m = new HashMap<String, Object>();
+			m.put("item", r.getUnit().getEquipmentName());
+			m.put("date1", dateStrConvert(r.getDate()));
+			m.put("division", r.getRequestBy().getDivision());
+			m.put("descModel", r.getUnit().getOtherComponent());
+			m.put("serialNumber", r.getUnit().getSerialNo());
+			m.put("descMalfunction", r.getDescriptionOfMalfunction());
+			m.put("receivedBy", r.getUnit().getReceivedBy().getFullName());
+			m.put("date2", dateStrConvert(r.getUnit().getDateRecieved()));
+			m.put("requestBy", r.getRequestBy() != null ? r.getRequestBy().getFullName() : "");
+			m.put("recommendedBy", r.getRecommendedBy() != null ? r.getRecommendedBy().getFullName() : "");
+			m.put("recommendation", r.getRecommendation());
+			m.put("inspectedBy", r.getInspectedBy() != null ? r.getInspectedBy().getFullName() : "");
+			m.put("noted", r.getNotedBy() != null ? r.getNotedBy().getFullName() : "");
+			m.put("repairedBy", r.getInHouseRepairedBy() != null ? r.getInHouseRepairedBy().getFullName() : "");
+			m.put("receivedBy2", r.getInHouseReceivedBy() != null ? r.getInHouseReceivedBy().getFullName() : "");
+			listCodes.add(m);
 //
 //			?
 			// hmParams.put("item",requestService.findAllRequests().get(0).getUnit().getEquipmentName());
+		} else if (format.equals("objective")) {
+			reportFileName = "objective";
+			boolean first = true;
+			List<EquipmentMaintenance> listEq = equipmentMaintenanceService.findAll();
+			for (EquipmentMaintenance e : listEq) {
+					if (month != null && e.getDate() != null && e.getDate().getMonth() + 1 == Integer.parseInt(month)) {
+						/*
+						 * causeOfRepairs.add(e.getRequest().getDescriptionOfMalfunction());
+						 * descriptionOfWorkDones.add(e.getOperationPerformed());
+						 * dateOfRepairs.add(dateStrConvert(e.getDate())); remarks.add(e.getRemark());
+						 */
+						Map<String, Object> m = new HashMap<String, Object>();
+						if(first) {
+							m.put("noOfComputerUnitAvailable", String.valueOf(unitService.findAllUnits().size()));
+							m.put("noPreventiveManagementPerformed",String.valueOf( preventiveMaintenanceService.findByCompleted().size()));				
+							m.put("noOfRepairPerformed", String.valueOf(listEq.size()));
+							m.put("month",theMonth(Integer.parseInt(month)-1)+" "+currentYearReport().getYear());
+							first = false;
+						}
+						m.put("causeOfRepair", e.getRequest().getDescriptionOfMalfunction());
+						m.put("descriptionOfWorkDone", e.getOperationPerformed());
+						m.put("dateOfRepair",dateStrConvert(e.getDate()));
+						m.put("remarks",e.getRemark());
+						listCodes.add(m);
+					}
+					
+					
+					
+				}
+ 
+		}else if (format.equals("equipmentmaintenance")) {
+			reportFileName = "equipment maintenance";
+			boolean first = true;
+			if(id != null) {
+				Unit unit = unitService.findById(Long.parseLong(id));
+				List<EquipmentMaintenance> listEq = equipmentMaintenanceService.findByUnit(unit);
+				for (EquipmentMaintenance e : listEq) {
+					Map<String, Object> m = new HashMap<String, Object>();
+					if(first) {
+						m.put("equipmentName", unit.getEquipmentName());
+						m.put("codeNo", unit.getCodeNo());
+						m.put("model", unit.getModelNo());
+						m.put("serialNo", unit.getSerialNo());
+						m.put("location", unit.getLocation());
+						m.put("otherComponent", unit.getOtherComponent());
+						first = false;
+					}
+					
+					
+					m.put("date", dateStrConvert(e.getDate()));
+					m.put("operationPerformed", e.getOperationPerformed());
+					m.put("remarks",e.getRemark());
+					m.put("performedBy",e.getPerformedBy() != null ? e.getPerformedBy().getFullName() : "");
+					listCodes.add(m);
+				}
+			}
+			
+		}else if (format.equals("preventive")) {
+			reportFileName = "preventive";
+			if(id != null) {
+				PreventiveMaintenance  pM = preventiveMaintenanceService.findById(Long.parseLong(id));
+				Unit unit = pM.getUnit();
+				Map<String, Object> m = new HashMap<String, Object>();
+				m.put("year", currentYearReport().getYear());
+				m.put("nameOfEquipment", unit.getEquipmentName());
+				m.put("codeNo", unit.getCodeNo());
+				m.put("model", unit.getModelNo());
+				m.put("serialNo", unit.getSerialNo());
+				m.put("location", unit.getLocation());
+				m.put("otherComponent", unit.getOtherComponent());
+				m.put("dateAcquired", dateStrConvert(unit.getDateAcquired()));
+				
+				m.put("Field_1", monthStringSet(pM.getCheckAll()));
+				m.put("Field_2", monthStringSet(pM.getCheck1()));
+				m.put("Field_3", monthStringSet(pM.getCheck2()));
+				m.put("Field_4", monthStringSet(pM.getCheck3()));
+				m.put("Field_5", monthStringSet(pM.getCheck4()));
+				m.put("Field_6", monthStringSet(pM.getCheck5()));
+				m.put("Field_7", monthStringSet(pM.getCheck6()));
+				m.put("Field_8", monthStringSet(pM.getCheck7()));
+				m.put("Field_9", monthStringSet(pM.getCheck8()));
+				m.put("Field_10", monthStringSet(pM.getCheck9()));
+				m.put("Field_11", monthStringSet(pM.getCheck10()));
+				m.put("Field_12", monthStringSet(pM.getCheck11()));
+				m.put("Field_13", monthStringSet(pM.getCheck12()));
+				
+				listCodes.add(m);
+			}
 		}
+			
+
 		JasperReport jasperReport = jrdao.getCompiledFile(reportFileName, request);
 		try {
 			jrdao.generateReportPDF(response, hmParams, listCodes, jasperReport);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		} // For
 			// PDF
@@ -581,7 +700,30 @@ public class AppController {
 		return null;
 	}
 
-	private String dateConvert(Date date) {
+	private String monthStringSet(Set<String> check) {
+		String field="";;
+		
+
+		 String[] monthNames = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+		 
+		 for(int i = 0; i < monthNames.length; i++) {
+			 
+			boolean in = false; 
+			Iterator<String> itr = check.iterator();
+			while(itr.hasNext()){
+				if(monthNames[i].equals(itr.next())) 
+					in = true;
+			} 
+			if(in)
+				field += "X        ";			
+			else
+				field += "_        ";	
+		 }
+				
+		return field;
+		
+	}
+	private String dateStrConvert(Date date) {
 		if (date == null)
 			return null;
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -805,6 +947,11 @@ public class AppController {
 
 		return UserProfileType.EMPLOYEE.getUserProfileType();
 
+	}
+	
+	private String theMonth(int month){
+	    String[] monthNames = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+	    return monthNames[month];
 	}
 
 }

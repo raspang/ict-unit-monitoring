@@ -57,19 +57,32 @@ Regional Office No. XII]]></text>
 		</band>
 	</title>
 	<detail>
-		<band height="521" splitType="Stretch">
+		<band height="496" splitType="Stretch">
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement x="10" y="30" width="280" height="30" uuid="5f10f143-3988-4c77-ab8a-a95b7ee17203"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{item}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="10" y="0" width="280" height="30" uuid="fcd03c20-8c6c-4af2-b485-9cc9139ac368"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0"/>
 				<textElement verticalAlignment="Bottom"/>
 				<text><![CDATA[Item:]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement x="290" y="30" width="100" height="30" uuid="a77a20d7-9ccd-4b50-aa80-8ed1ac3e0205"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{date1}]]></textFieldExpression>
 			</textField>
@@ -80,6 +93,12 @@ Regional Office No. XII]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement x="390" y="30" width="160" height="30" uuid="1b10df50-dd69-4700-a768-fcbac71caa06"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{division}]]></textFieldExpression>
 			</textField>
@@ -90,6 +109,12 @@ Regional Office No. XII]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement x="10" y="90" width="240" height="30" uuid="329b3b68-2534-4606-8299-42bc6022d660"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{descModel}]]></textFieldExpression>
 			</textField>
@@ -100,6 +125,12 @@ Regional Office No. XII]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement x="250" y="90" width="300" height="30" uuid="595a77c9-ff11-4d8b-b03c-32b74fde49e8"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{serialNumber}]]></textFieldExpression>
 			</textField>
@@ -110,6 +141,12 @@ Regional Office No. XII]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement x="10" y="150" width="180" height="30" uuid="84808ca8-bcd7-454b-bed1-909e9520b1d4"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{descMalfunction}]]></textFieldExpression>
 			</textField>
@@ -120,6 +157,12 @@ Regional Office No. XII]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement x="190" y="150" width="170" height="30" uuid="2aff0a70-266e-483f-a346-ef51a937ec90"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{receivedBy}]]></textFieldExpression>
 			</textField>
@@ -130,6 +173,12 @@ Regional Office No. XII]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement x="360" y="150" width="190" height="30" uuid="527dee64-ed7a-4379-8f86-437e96fc52f1"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{date2}]]></textFieldExpression>
 			</textField>
@@ -140,6 +189,12 @@ Regional Office No. XII]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement x="10" y="210" width="540" height="30" uuid="93361eca-082c-49b7-815a-1be0c7ed88f6"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{requestBy}]]></textFieldExpression>
 			</textField>
@@ -150,6 +205,12 @@ Regional Office No. XII]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement x="10" y="270" width="540" height="30" uuid="3689e64a-8e51-459c-b3ab-cb755b32f18c"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{recommendedBy}]]></textFieldExpression>
 			</textField>
@@ -159,27 +220,45 @@ Regional Office No. XII]]></text>
 				<text><![CDATA[Recommendation:]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement x="30" y="330" width="160" height="30" uuid="bd7f037b-c721-40a6-86de-f87d216809c2"/>
+				<reportElement x="10" y="330" width="160" height="30" uuid="bd7f037b-c721-40a6-86de-f87d216809c2"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{recommendation}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="30" y="300" width="160" height="30" uuid="20403d7e-f366-4b1d-a9e0-82bc935c96b9"/>
+				<reportElement x="10" y="300" width="160" height="30" uuid="20403d7e-f366-4b1d-a9e0-82bc935c96b9"/>
 				<textElement verticalAlignment="Bottom"/>
 				<text><![CDATA[Recommended by:]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement x="210" y="330" width="130" height="30" uuid="b06ffb20-9163-4ab4-b63c-54201c3409a7"/>
+				<reportElement x="190" y="330" width="170" height="30" uuid="b06ffb20-9163-4ab4-b63c-54201c3409a7"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{inspectedBy}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="210" y="300" width="130" height="30" uuid="c5467183-a659-4d16-a2b9-629e448f637e"/>
+				<reportElement x="190" y="300" width="170" height="30" uuid="c5467183-a659-4d16-a2b9-629e448f637e"/>
 				<textElement verticalAlignment="Bottom"/>
 				<text><![CDATA[Inspected by:]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement x="380" y="330" width="120" height="30" uuid="b9a24821-8de7-40a2-994c-e7ac042278e8"/>
+				<reportElement x="380" y="330" width="170" height="30" uuid="b9a24821-8de7-40a2-994c-e7ac042278e8"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{noted}]]></textFieldExpression>
 			</textField>
@@ -189,21 +268,35 @@ Regional Office No. XII]]></text>
 				<text><![CDATA[Noted:]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement x="70" y="480" width="170" height="30" uuid="067d6ec2-10df-4291-9276-112ad6e08dcb"/>
+				<reportElement x="70" y="455" width="180" height="30" uuid="067d6ec2-10df-4291-9276-112ad6e08dcb"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{repairedBy}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="70" y="450" width="170" height="30" uuid="47594e17-6745-4cc9-973b-f933872a3624"/>
+				<reportElement x="70" y="425" width="180" height="30" uuid="47594e17-6745-4cc9-973b-f933872a3624"/>
+				<textElement verticalAlignment="Bottom"/>
 				<text><![CDATA[Repaired by:]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement x="290" y="480" width="160" height="30" uuid="23a2d5c4-8971-438f-bce6-b7162da2ec17"/>
+				<reportElement x="290" y="455" width="180" height="30" uuid="23a2d5c4-8971-438f-bce6-b7162da2ec17"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{receivedBy2}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="290" y="450" width="160" height="30" uuid="fcb147b5-71ed-4928-bdbe-b28cb4db50f7"/>
+				<reportElement x="290" y="425" width="180" height="30" uuid="fcb147b5-71ed-4928-bdbe-b28cb4db50f7"/>
+				<textElement verticalAlignment="Bottom"/>
 				<text><![CDATA[Received by:]]></text>
 			</staticText>
 			<staticText>

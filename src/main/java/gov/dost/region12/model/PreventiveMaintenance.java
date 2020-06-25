@@ -145,11 +145,6 @@ public class PreventiveMaintenance implements Serializable {
 	@Column(name="check13")
 	private Set<String> check13 = new HashSet<String>();
 
-	@JsonIgnore
-	@ElementCollection(fetch=FetchType.EAGER)
-	@CollectionTable(name="check14", joinColumns=@JoinColumn(name="preventiveMaintenance_id"))
-	@Column(name="check14")
-	private Set<String> check14 = new HashSet<String>();
 
 	@JsonIgnore
 	private Long yearReport;
@@ -314,13 +309,6 @@ public class PreventiveMaintenance implements Serializable {
 		this.check13 = check13;
 	}
 
-	public Set<String> getCheck14() {
-		return check14;
-	}
-
-	public void setCheck14(Set<String> check14) {
-		this.check14 = check14;
-	}
 
 
 	public Long getYearReport() {

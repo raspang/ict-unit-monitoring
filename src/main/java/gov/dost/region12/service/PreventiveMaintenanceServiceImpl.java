@@ -65,7 +65,6 @@ public class PreventiveMaintenanceServiceImpl implements PreventiveMaintenanceSe
 			entity.setCheck11(preventiveMaintenance.getCheck11());
 			entity.setCheck12(preventiveMaintenance.getCheck12());
 			entity.setCheck13(preventiveMaintenance.getCheck13());
-			entity.setCheck14(preventiveMaintenance.getCheck14());
 			entity.setCompleted(preventiveMaintenance.isCompleted());
 		}
 	}

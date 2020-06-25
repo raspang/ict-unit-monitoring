@@ -238,7 +238,7 @@ $(function() {
 							var str = '';
 							if (userRole === 'ADMIN') {
 								str += '<a href="' + window.contextRoot
-										+ '/admin/edit-request-' + data
+										+ '/admin/equipmentmaintenance/pdf?id=' + data
 										+ '" class="">'+'<img src="'+window.contextRoot+'/static/icons/icons8-export-pdf-48.png" alt="edit" width="25px" height="24px"/>'+'</a>&nbsp;';
 								
 							}
@@ -367,8 +367,8 @@ if ($tableUser.length) {
 						var str = '';
 						if (userRole === 'ADMIN') {
 							str += '<a href="' + window.contextRoot
-									+ '/admin/edit-request-' + data
-									+ '" class="">'+'<img src="'+window.contextRoot+'/static/icons/icons8-export-pdf-48.png" alt="edit" width="25px" height="24px"/>'+'</a>&nbsp;';
+									+ '/admin/preventive/pdf?id=' + data
+									+ '" class="">'+'<img src="'+window.contextRoot+'/static/icons/icons8-export-pdf-48.png" alt="pdf" width="25px" height="24px"/>'+'</a>&nbsp;';
 							
 						}
 						
@@ -384,10 +384,10 @@ if ($tableUser.length) {
 						if (userRole === 'ADMIN') {
 							str += '<a href="' + window.contextRoot
 									+ '/admin/edit-preventivemaintenance-' + data
-									+ '" class="">'+'<img src="'+window.contextRoot+'/static/icons/icons8-delete-64.png" alt="edit" width="25px" height="24px"/>'+'</a>&nbsp;';
+									+ '" class="">'+'<img src="'+window.contextRoot+'/static/icons/icons8-edit-48.png" alt="edit" width="25px" height="24px"/>'+'</a>&nbsp;';
 							str += '&nbsp;<a href="' + window.contextRoot
 									+ '/admin/delete-preventivemaintenance-' + data
-									+ '" class="">'+'<img src="'+window.contextRoot+'/static/icons/icons8-edit-48.png" alt="edit" width="25px" height="24px"/>'+'</a>';
+									+ '" class="">'+'<img src="'+window.contextRoot+'/static/icons/icons8-delete-64.png" alt="edit" width="25px" height="24px"/>'+'</a>';
 						}
 						return str;
 

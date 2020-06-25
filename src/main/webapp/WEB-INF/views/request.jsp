@@ -47,7 +47,7 @@
 						<label for="descriptionOfMalfunction">Description Of
 							Malfunction:</label>
 						<form:input id="descriptionOfMalfunction" type="text"
-							path="descriptionOfMalfunction" placeholder="description of the problem"/>
+							path="descriptionOfMalfunction" placeholder="description of the problem" required="required"/>
 					</div>
 
 					<div class="admin-form">
